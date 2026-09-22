@@ -38,10 +38,15 @@ pub fn classify(words: &[String]) -> Vec<Token> {
         let mut t = Token::new(w.clone());
         let lw = w.to_ascii_lowercase();
         let prev_is_number = i > 0 && parse_amount(&words[i - 1]).is_some();
+        let prev_is_find_arg = out.last().map(|p: &Token| p.role == Some(Role::FindArg) && p.text.starts_with('-')).unwrap_or(false);
         if w.starts_with('-') && w.len() > 1 && parse_amount(w).is_none() {
             // `-perm 644` のような find の語はそのまま通す。
             t.set_rule(Role::FindArg);
             t.note = Some("passed to find untouched".into());
+        } else if prev_is_find_arg && parse_amount(w).is_some() {
+            // find の語の直後の数はその引数(`-perm 644`, `-links 2`)。
+            t.set_rule(Role::FindArg);
+            t.note = Some("argument of the previous find word".into());
         } else if is_path_like(w) {
             t.set_rule(Role::Path);
         } else if is_glob(w) {
@@ -174,6 +179,6 @@ mod tests {
 
     #[test]
     fn find_args_pass_through() {
-        assert_eq!(roles(&["-perm", "644", "-newer"]), [Some(Role::FindArg), None, Some(Role::FindArg)]);
+        assert_eq!(roles(&["-perm", "644", "-newer", "x"]), [Some(Role::FindArg), Some(Role::FindArg), Some(Role::FindArg), None]);
     }
 }
