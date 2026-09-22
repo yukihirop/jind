@@ -42,103 +42,32 @@ pub enum Role {
 impl Role {
     /// jev に選ばせる役割。
     pub const JEV_CHOICES: &'static [(Role, &'static str, &'static str)] = &[
-        (
-            Role::Path,
-            "path",
-            "A directory to search in (a path like src, /var/log, ~/Downloads)",
-        ),
-        (
-            Role::NamePattern,
-            "name_pattern",
-            "A glob for the file name (*.log, report-*)",
-        ),
-        (
-            Role::Extension,
-            "extension",
-            "A bare file extension (log, rs, png, jpeg)",
-        ),
-        (
-            Role::NameWord,
-            "name_word",
-            "A word that should appear somewhere in the file name",
-        ),
-        (
-            Role::Type,
-            "type",
-            "Kind of entry: file(s), dir(s)/folder(s), symlink(s)",
-        ),
-        (
-            Role::TimeAmount,
-            "time_amount",
-            "A number that is an age (days/hours/minutes since modified)",
-        ),
-        (
-            Role::SizeAmount,
-            "size_amount",
-            "A number that is a file size (bytes/KB/MB/GB)",
-        ),
-        (
-            Role::Depth,
-            "depth",
-            "A number of directory levels to descend",
-        ),
-        (
-            Role::Unit,
-            "unit",
-            "A unit word belonging to the previous number (days, hours, MB, KB)",
-        ),
-        (
-            Role::Qualifier,
-            "qualifier",
-            "A comparison word: older, newer, than, within, last, larger, smaller, over, under, at, least, modified",
-        ),
-        (
-            Role::ExcludeMarker,
-            "exclude_marker",
-            "A word saying the following names are to be skipped: except, excluding, skip, ignore, not, without",
-        ),
-        (
-            Role::Exclude,
-            "exclude",
-            "A directory name or pattern to skip (node_modules, .git, target)",
-        ),
-        (
-            Role::DepthMarker,
-            "depth_marker",
-            "A word saying the next number is a depth: depth, maxdepth, levels, deep",
-        ),
-        (
-            Role::Empty,
-            "empty",
-            "The word empty: match empty files or directories",
-        ),
-        (
-            Role::Action,
-            "action",
-            "What to do with matches: delete/remove/rm, ls/list, count, print0",
-        ),
-        (
-            Role::Noise,
-            "noise",
-            "Filler with no meaning for the search (find, in, the, that, all, with, me)",
-        ),
+        (Role::Path, "path", "A directory to search in (a path like src, /var/log, ~/Downloads)"),
+        (Role::NamePattern, "name_pattern", "A glob for the file name (*.log, report-*)"),
+        (Role::Extension, "extension", "A bare file extension (log, rs, png, jpeg)"),
+        (Role::NameWord, "name_word", "A word that should appear somewhere in the file name"),
+        (Role::Type, "type", "Kind of entry: file(s), dir(s)/folder(s), symlink(s)"),
+        (Role::TimeAmount, "time_amount", "A number that is an age (days/hours/minutes since modified)"),
+        (Role::SizeAmount, "size_amount", "A number that is a file size (bytes/KB/MB/GB)"),
+        (Role::Depth, "depth", "A number of directory levels to descend"),
+        (Role::Unit, "unit", "A unit word belonging to the previous number (days, hours, MB, KB)"),
+        (Role::Qualifier, "qualifier", "A comparison word: older, newer, than, within, last, larger, smaller, over, under, at, least, modified"),
+        (Role::ExcludeMarker, "exclude_marker", "A word saying the following names are to be skipped: except, excluding, skip, ignore, not, without"),
+        (Role::Exclude, "exclude", "A directory name or pattern to skip (node_modules, .git, target)"),
+        (Role::DepthMarker, "depth_marker", "A word saying the next number is a depth: depth, maxdepth, levels, deep"),
+        (Role::Empty, "empty", "The word empty: match empty files or directories"),
+        (Role::Action, "action", "What to do with matches: delete/remove/rm, ls/list, count, print0"),
+        (Role::Noise, "noise", "Filler with no meaning for the search (find, in, the, that, all, with, me)"),
     ];
 
     pub fn from_key(key: &str) -> Option<Role> {
-        Role::JEV_CHOICES
-            .iter()
-            .find(|(_, k, _)| *k == key)
-            .map(|(r, _, _)| *r)
+        Role::JEV_CHOICES.iter().find(|(_, k, _)| *k == key).map(|(r, _, _)| *r)
     }
 
     pub fn key(self) -> &'static str {
         match self {
             Role::FindArg => "find_arg",
-            _ => Role::JEV_CHOICES
-                .iter()
-                .find(|(r, _, _)| *r == self)
-                .map(|(_, k, _)| *k)
-                .unwrap_or("?"),
+            _ => Role::JEV_CHOICES.iter().find(|(r, _, _)| *r == self).map(|(_, k, _)| *k).unwrap_or("?"),
         }
     }
 }
@@ -205,18 +134,7 @@ impl Unit {
     }
 
     pub fn from_key(k: &str) -> Option<Unit> {
-        [
-            Unit::Minutes,
-            Unit::Hours,
-            Unit::Days,
-            Unit::Weeks,
-            Unit::Bytes,
-            Unit::Kb,
-            Unit::Mb,
-            Unit::Gb,
-        ]
-        .into_iter()
-        .find(|u| u.key() == k)
+        [Unit::Minutes, Unit::Hours, Unit::Days, Unit::Weeks, Unit::Bytes, Unit::Kb, Unit::Mb, Unit::Gb].into_iter().find(|u| u.key() == k)
     }
 }
 
@@ -247,16 +165,7 @@ pub struct Token {
 
 impl Token {
     pub fn new(text: impl Into<String>) -> Self {
-        Token {
-            text: text.into(),
-            role: None,
-            confidence: 0.0,
-            source: Source::Rule,
-            fixed: None,
-            amount: None,
-            note: None,
-            probs: None,
-        }
+        Token { text: text.into(), role: None, confidence: 0.0, source: Source::Rule, fixed: None, amount: None, note: None, probs: None }
     }
 
     pub fn resolved(&self) -> bool {

@@ -127,20 +127,11 @@ fn line(i: usize, sel: bool, on: bool, cols: usize) -> String {
     let ex = &EXAMPLES[i];
     let mark = if sel { ">" } else { " " };
     let tag = if ex.jev { "jev " } else { "rule" };
-    let plain = format!(
-        "{mark} {:>2}  {tag}  {:<48} jind {}",
-        i + 1,
-        ex.what,
-        join(ex.words)
-    );
+    let plain = format!("{mark} {:>2}  {tag}  {:<48} jind {}", i + 1, ex.what, join(ex.words));
     let plain: String = plain.chars().take(cols.saturating_sub(1)).collect();
     if sel {
         // 反転 + 太字。色なしなら `>` だけで示す。
-        if on {
-            format!("\x1b[1;7m{plain}\x1b[0m")
-        } else {
-            plain
-        }
+        if on { format!("\x1b[1;7m{plain}\x1b[0m") } else { plain }
     } else {
         // 番号はシアン、rule/jev は --explain の by 列と同じ緑/青、コマンドは薄く。
         let n_end = 5.min(plain.len());
@@ -150,11 +141,7 @@ fn line(i: usize, sel: bool, on: bool, cols: usize) -> String {
         format!(
             "{}{}{}{}",
             paint(on, C::Cyan, &plain[..n_end]),
-            paint(
-                on,
-                if ex.jev { C::Blue } else { C::Green },
-                &plain[n_end..tag_end]
-            ),
+            paint(on, if ex.jev { C::Blue } else { C::Green }, &plain[n_end..tag_end]),
             &rest[..cmd_at],
             paint(on, C::Dim, &rest[cmd_at..])
         )
@@ -175,15 +162,8 @@ fn draw(sel: usize, on: bool, cols: usize, redraw: bool) {
 
 /// 番号 → 例。`jind demo 3` の引数か、メニューで打った文字列。
 pub fn pick(s: &str) -> Result<&'static Example, JindError> {
-    let n: usize = s.trim().parse().map_err(|_| {
-        JindError::Usage(format!(
-            "demo: expected a number 1-{}, got `{s}`",
-            EXAMPLES.len()
-        ))
-    })?;
-    EXAMPLES
-        .get(n.wrapping_sub(1))
-        .ok_or_else(|| JindError::Usage(format!("demo: no example {n} (1-{})", EXAMPLES.len())))
+    let n: usize = s.trim().parse().map_err(|_| JindError::Usage(format!("demo: expected a number 1-{}, got `{s}`", EXAMPLES.len())))?;
+    EXAMPLES.get(n.wrapping_sub(1)).ok_or_else(|| JindError::Usage(format!("demo: no example {n} (1-{})", EXAMPLES.len())))
 }
 
 /// 矢印キー選択に要る raw tty(termios / ioctl / poll)。unix だけ。
@@ -247,11 +227,7 @@ mod tty {
 
     /// ESC の後に続きが来ているか(単独の ESC と矢印を区別する)。
     fn pending_within(ms: i32) -> bool {
-        let mut p = libc::pollfd {
-            fd: 0,
-            events: libc::POLLIN,
-            revents: 0,
-        };
+        let mut p = libc::pollfd { fd: 0, events: libc::POLLIN, revents: 0 };
         // SAFETY: pollfd 1 個、タイムアウト付き。
         unsafe { libc::poll(&mut p, 1, ms) > 0 }
     }
@@ -286,6 +262,7 @@ mod tty {
             Some(_) => Key::Other,
         }
     }
+
 }
 
 /// メニューを出して上下(または j/k、番号)で選ばせる。q / Esc / Ctrl-C / EOF で None。
@@ -293,31 +270,19 @@ mod tty {
 #[cfg(unix)]
 pub fn ask(initial: usize) -> Result<Option<(usize, &'static Example)>, JindError> {
     if !std::io::stdin().is_terminal() || !std::io::stderr().is_terminal() {
-        return Err(JindError::Usage(format!(
-            "demo: not a terminal. pick one directly: jind demo <1-{}>",
-            EXAMPLES.len()
-        )));
+        return Err(JindError::Usage(format!("demo: not a terminal. pick one directly: jind demo <1-{}>", EXAMPLES.len())));
     }
     let on = color::stderr_enabled();
     use tty::{Key, Raw};
     let cols = tty::term_cols();
     eprintln!(
         "{}  {}\n{} {}   {} {}",
-        paint2(
-            on,
-            C::Bold,
-            C::Magenta,
-            "jind demo — a sample tree in a temp dir, safe to delete"
-        ),
+        paint2(on, C::Bold, C::Magenta, "jind demo — a sample tree in a temp dir, safe to delete"),
         paint(on, C::Dim, "↑↓ / j k / number, Enter to run, q to quit"),
         paint(on, C::Green, "rule"),
         paint(on, C::Dim, "= words resolved by rules, runs offline"),
         paint(on, C::Blue, "jev"),
-        paint(
-            on,
-            C::Dim,
-            "= jev decides the roles (needs OPENROUTER_API_KEY, asks before running)"
-        )
+        paint(on, C::Dim, "= jev decides the roles (needs OPENROUTER_API_KEY, asks before running)")
     );
     let mut sel = initial.min(EXAMPLES.len() - 1);
     let mut typed = String::new();
@@ -329,11 +294,7 @@ pub fn ask(initial: usize) -> Result<Option<(usize, &'static Example)>, JindErro
             Key::Enter => break Some((sel, &EXAMPLES[sel])),
             Key::Up => {
                 typed.clear();
-                sel = if sel == 0 {
-                    EXAMPLES.len() - 1
-                } else {
-                    sel - 1
-                };
+                sel = if sel == 0 { EXAMPLES.len() - 1 } else { sel - 1 };
             }
             Key::Down => {
                 typed.clear();
@@ -368,29 +329,13 @@ pub fn ask(initial: usize) -> Result<Option<(usize, &'static Example)>, JindErro
 #[cfg(not(unix))]
 pub fn ask(initial: usize) -> Result<Option<(usize, &'static Example)>, JindError> {
     if !std::io::stdin().is_terminal() || !std::io::stderr().is_terminal() {
-        return Err(JindError::Usage(format!(
-            "demo: not a terminal. pick one directly: jind demo <1-{}>",
-            EXAMPLES.len()
-        )));
+        return Err(JindError::Usage(format!("demo: not a terminal. pick one directly: jind demo <1-{}>", EXAMPLES.len())));
     }
     let on = color::stderr_enabled();
-    eprintln!(
-        "{}  {}",
-        paint2(
-            on,
-            C::Bold,
-            C::Magenta,
-            "jind demo — a sample tree in a temp dir, safe to delete"
-        ),
-        paint(on, C::Dim, "type a number, Enter to run, q to quit")
-    );
+    eprintln!("{}  {}", paint2(on, C::Bold, C::Magenta, "jind demo — a sample tree in a temp dir, safe to delete"), paint(on, C::Dim, "type a number, Enter to run, q to quit"));
     draw(initial.min(EXAMPLES.len() - 1), on, 100, false);
     loop {
-        eprint!(
-            "{} {} ",
-            paint(on, C::Yellow, "which one?"),
-            paint(on, C::Dim, &format!("[1-{}, q]", EXAMPLES.len()))
-        );
+        eprint!("{} {} ", paint(on, C::Yellow, "which one?"), paint(on, C::Dim, &format!("[1-{}, q]", EXAMPLES.len())));
         let _ = std::io::stderr().flush();
         let mut s = String::new();
         if std::io::stdin().read_line(&mut s)? == 0 {
@@ -401,15 +346,7 @@ pub fn ask(initial: usize) -> Result<Option<(usize, &'static Example)>, JindErro
             return Ok(None);
         }
         match pick(s) {
-            Ok(ex) => {
-                return Ok(Some((
-                    EXAMPLES
-                        .iter()
-                        .position(|e| std::ptr::eq(e, ex))
-                        .unwrap_or(0),
-                    ex,
-                )));
-            }
+            Ok(ex) => return Ok(Some((EXAMPLES.iter().position(|e| std::ptr::eq(e, ex)).unwrap_or(0), ex))),
             Err(e) => eprintln!("jind: {e}"),
         }
     }
@@ -417,9 +354,5 @@ pub fn ask(initial: usize) -> Result<Option<(usize, &'static Example)>, JindErro
 
 /// 表示用: `*.log` はクォートし、素の語はそのまま並べる。
 pub fn join<S: AsRef<str>>(words: &[S]) -> String {
-    words
-        .iter()
-        .map(|w| crate::find::quote(w.as_ref()))
-        .collect::<Vec<_>>()
-        .join(" ")
+    words.iter().map(|w| crate::find::quote(w.as_ref())).collect::<Vec<_>>().join(" ")
 }

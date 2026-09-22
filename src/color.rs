@@ -56,12 +56,6 @@ pub fn paint2(on: bool, a: C, b: C, s: &str) -> String {
 /// confidence の帯で色を変える: ≥0.8 緑、≥0.5 黄、それ未満 赤。
 pub fn conf(on: bool, v: f32) -> String {
     let s = format!("{v:.2}");
-    let c = if v >= 0.8 {
-        C::Green
-    } else if v >= 0.5 {
-        C::Yellow
-    } else {
-        C::Red
-    };
+    let c = if v >= 0.8 { C::Green } else if v >= 0.5 { C::Yellow } else { C::Red };
     paint(on, c, &s)
 }

@@ -67,15 +67,8 @@ pub fn parse(args: impl IntoIterator<Item = String>) -> Parsed {
             _ => words.push(a),
         }
     }
-    if std::env::var("JIND_NO_JEV")
-        .map(|v| v == "1")
-        .unwrap_or(false)
-    {
+    if std::env::var("JIND_NO_JEV").map(|v| v == "1").unwrap_or(false) {
         opts.no_jev = true;
     }
-    Parsed {
-        opts,
-        words,
-        passthrough,
-    }
+    Parsed { opts, words, passthrough }
 }

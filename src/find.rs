@@ -77,7 +77,7 @@ pub fn argv(s: &Search, delete_ok: bool) -> Vec<String> {
 
 /// 1 行で表示。式の語(`-type`)はシアン、`-delete` は赤、括弧は薄く。
 pub fn render_with(argv: &[String], color: bool) -> String {
-    use crate::color::{C, paint};
+    use crate::color::{paint, C};
     let mut parts: Vec<String> = Vec::new();
     for (i, a) in argv.iter().enumerate() {
         let q = quote(a);
@@ -87,10 +87,7 @@ pub fn render_with(argv: &[String], color: bool) -> String {
             paint(color, C::Red, &q)
         } else if a == "(" || a == ")" || a == "-o" || a == "-not" {
             paint(color, C::Dim, &q)
-        } else if a.starts_with('-')
-            && a.len() > 1
-            && !a[1..].starts_with(|c: char| c.is_ascii_digit())
-        {
+        } else if a.starts_with('-') && a.len() > 1 && !a[1..].starts_with(|c: char| c.is_ascii_digit()) {
             paint(color, C::Cyan, &q)
         } else {
             q
@@ -101,12 +98,7 @@ pub fn render_with(argv: &[String], color: bool) -> String {
 }
 
 pub fn quote(s: &str) -> String {
-    if !s.is_empty()
-        && s.chars().all(|c| {
-            c.is_ascii_alphanumeric()
-                || matches!(c, '-' | '_' | '.' | '/' | ':' | '=' | '@' | '%' | '+' | ',')
-        })
-    {
+    if !s.is_empty() && s.chars().all(|c| c.is_ascii_alphanumeric() || matches!(c, '-' | '_' | '.' | '/' | ':' | '=' | '@' | '%' | '+' | ',')) {
         s.to_string()
     } else if s == "(" || s == ")" {
         format!("\\{s}")
@@ -117,8 +109,7 @@ pub fn quote(s: &str) -> String {
 
 /// 表示したコマンド(`\(`)を shell の語分割で argv に戻す。
 pub fn parse(rendered: &str) -> Result<Vec<String>, JindError> {
-    shell_words::split(rendered)
-        .map_err(|e| JindError::Usage(format!("cannot parse edited command: {e}")))
+    shell_words::split(rendered).map_err(|e| JindError::Usage(format!("cannot parse edited command: {e}")))
 }
 
 fn spawn(argv: &[String]) -> Result<Command, JindError> {
@@ -131,31 +122,18 @@ fn spawn(argv: &[String]) -> Result<Command, JindError> {
 }
 
 fn missing(e: std::io::Error) -> JindError {
-    if e.kind() == std::io::ErrorKind::NotFound {
-        JindError::FindMissing
-    } else {
-        JindError::Io(e)
-    }
+    if e.kind() == std::io::ErrorKind::NotFound { JindError::FindMissing } else { JindError::Io(e) }
 }
 
 /// 出力をそのまま端末に流す。戻りは find の終了コード。
 pub fn run_inherit(argv: &[String]) -> Result<i32, JindError> {
-    let st = spawn(argv)?
-        .stdin(Stdio::inherit())
-        .stdout(Stdio::inherit())
-        .stderr(Stdio::inherit())
-        .status()
-        .map_err(missing)?;
+    let st = spawn(argv)?.stdin(Stdio::inherit()).stdout(Stdio::inherit()).stderr(Stdio::inherit()).status().map_err(missing)?;
     Ok(st.code().unwrap_or(1))
 }
 
 /// 出力を取り込む(件数確認と count 用)。stderr はそのまま。
 pub fn run_capture(argv: &[String]) -> Result<(Vec<u8>, i32), JindError> {
-    let out = spawn(argv)?
-        .stdin(Stdio::inherit())
-        .stderr(Stdio::inherit())
-        .output()
-        .map_err(missing)?;
+    let out = spawn(argv)?.stdin(Stdio::inherit()).stderr(Stdio::inherit()).output().map_err(missing)?;
     Ok((out.stdout, out.status.code().unwrap_or(1)))
 }
 
@@ -165,16 +143,9 @@ mod tests {
 
     #[test]
     fn quoting_round_trips_through_shell_words() {
-        let argv: Vec<String> = [
-            "find", ".", "(", "-iname", "*.log", "-o", "-name", "it's", ")", "-mtime", "+7",
-        ]
-        .map(String::from)
-        .to_vec();
+        let argv: Vec<String> = ["find", ".", "(", "-iname", "*.log", "-o", "-name", "it's", ")", "-mtime", "+7"].map(String::from).to_vec();
         let r = render_with(&argv, false);
-        assert_eq!(
-            r,
-            r"find . \( -iname '*.log' -o -name 'it'\''s' \) -mtime +7"
-        );
+        assert_eq!(r, r"find . \( -iname '*.log' -o -name 'it'\''s' \) -mtime +7");
         assert_eq!(parse(&r).unwrap(), argv);
     }
 }
