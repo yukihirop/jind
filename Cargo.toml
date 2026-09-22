@@ -1,0 +1,20 @@
+[package]
+name = "jind"
+version = "0.1.0"
+edition = "2024"
+description = "jev x find: turn loosely ordered words into a find command and run it"
+license = "MIT"
+repository = "https://github.com/yukihirop/jind"
+readme = "README.md"
+keywords = ["find", "cli", "jev", "files", "search"]
+categories = ["command-line-utilities", "filesystem"]
+exclude = [".gitignore"]
+
+[dependencies]
+serde = { version = "1", features = ["derive"] }
+serde_json = { version = "1", features = ["preserve_order"] }
+ureq = { version = "3", features = ["json"] }
+toml = "1"
+thiserror = "2"
+rpassword = "7"
+shell-words = "1"
