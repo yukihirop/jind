@@ -8,7 +8,7 @@ repository = "https://github.com/yukihirop/jind"
 readme = "README.md"
 keywords = ["find", "cli", "jev", "files", "search"]
 categories = ["command-line-utilities", "filesystem"]
-exclude = [".gitignore"]
+exclude = ["docs/", "CLAUDE.md", ".gitignore"]
 
 [dependencies]
 serde = { version = "1", features = ["derive"] }
