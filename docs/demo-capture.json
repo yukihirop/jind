@@ -1,0 +1,14 @@
+[
+{
+"cmd": "jind log files older than 7 days in logs --explain",
+"out": "\u001b[2mword   role             conf  by    note\u001b[0m\r\nlog    \u001b[32mextension\u001b[0m        \u001b[33m0.62\u001b[0m  \u001b[34mjev \u001b[0m  \u001b[2mextension 0.65, name_word 0.19\u001b[0m\r\nfiles  \u001b[32mtype\u001b[0m             \u001b[32m1.00\u001b[0m  \u001b[2mrule\u001b[0m  \u001b[2m→ f\u001b[0m\r\nolder  \u001b[2mqualifier\u001b[0m        \u001b[32m1.00\u001b[0m  \u001b[2mrule\u001b[0m  \u001b[2m\u001b[0m\r\nthan   \u001b[2mqualifier\u001b[0m        \u001b[32m1.00\u001b[0m  \u001b[2mrule\u001b[0m  \u001b[2m\u001b[0m\r\n7      \u001b[36mtime_amount\u001b[0m      \u001b[32m0.92\u001b[0m  \u001b[34mjev \u001b[0m  \u001b[2m≥ 7 days; at least p=0.92; time_amount 1.00, action 0.00\u001b[0m\r\ndays   \u001b[36munit\u001b[0m             \u001b[32m1.00\u001b[0m  \u001b[2mrule\u001b[0m  \u001b[2m\u001b[0m\r\nin     \u001b[2mnoise\u001b[0m            \u001b[32m1.00\u001b[0m  \u001b[2mrule\u001b[0m  \u001b[2m\u001b[0m\r\nlogs   \u001b[34mpath\u001b[0m             \u001b[32m1.00\u001b[0m  \u001b[2mrule\u001b[0m  \u001b[2mexisting directory\u001b[0m\r\n\u001b[2mjev: typesafe/jev-1.13-20260917 · 5 questions · 281 ms · 1746 in / 510 out tokens · $0.000073\u001b[0m\r\n\r\n\u001b[1mfind\u001b[0m logs \u001b[36m-type\u001b[0m f \u001b[36m-iname\u001b[0m '*.log' \u001b[36m-mtime\u001b[0m +7\r\n\r\n\u001b[33mrun this? (interpreted by jev, confidence 0.62)\u001b[0m \u001b[2m[Y/n/e]\u001b[0m y\r\n\r\nlogs/system.log\r\nlogs/install.log\r\n"
+},
+{
+"cmd": "jind rs edited within an hour",
+"out": "\u001b[2mjev: typesafe/jev-1.13-20260917 · 4 questions · 269 ms · 1240 in / 374 out tokens · $0.000052\u001b[0m\r\n\r\n\u001b[1mfind\u001b[0m . \u001b[36m-iname\u001b[0m '*.rs' \u001b[36m-mmin\u001b[0m -60\r\n\r\n\u001b[33mrun this? (interpreted by jev, confidence 0.81)\u001b[0m \u001b[2m[Y/n/e]\u001b[0m y\r\n\r\n./src/net/client.rs\r\n./src/main.rs\r\n"
+},
+{
+"cmd": "jind '*.tmp' except build delete",
+"out": "\r\n\u001b[1mfind\u001b[0m . \u001b[36m-name\u001b[0m '*.tmp' \u001b[2m-not\u001b[0m \u001b[36m-path\u001b[0m '*/build/*' \u001b[2m-not\u001b[0m \u001b[36m-path\u001b[0m '*/build' \u001b[31m-delete\u001b[0m\r\n\r\n  ./notes/draft.tmp\r\n  ./notes/old.tmp\r\n  ./src/scratch.tmp\r\n\r\n\u001b[31mdelete these 3 entries? (confidence 1.00)\u001b[0m \u001b[2m[y/N/e]\u001b[0m y\r\n\r\n"
+}
+]

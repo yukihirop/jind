@@ -1,0 +1,162 @@
+<svg xmlns="http://www.w3.org/2000/svg" width="930" height="421" viewBox="0 0 930 421" font-family="ui-monospace, SFMono-Regular, Menlo, Consolas, 'Liberation Mono', monospace" font-size="14">
+<style>@keyframes cursor{0%,49%{opacity:1}50%,100%{opacity:0}}.a{opacity:0;animation-duration:24.11s;animation-timing-function:step-end;animation-iteration-count:infinite;animation-fill-mode:both}@keyframes k0_2{0%{opacity:0}3.505%{opacity:1}100%{opacity:1}}@keyframes k0_3{0%{opacity:0}3.692%{opacity:1}100%{opacity:1}}@keyframes k0_4{0%{opacity:0}3.879%{opacity:1}100%{opacity:1}}@keyframes k0_5{0%{opacity:0}4.066%{opacity:1}100%{opacity:1}}@keyframes k0_6{0%{opacity:0}4.252%{opacity:1}100%{opacity:1}}@keyframes k0_7{0%{opacity:0}4.439%{opacity:1}100%{opacity:1}}@keyframes k0_8{0%{opacity:0}4.626%{opacity:1}100%{opacity:1}}@keyframes k0_9{0%{opacity:0}4.812%{opacity:1}100%{opacity:1}}@keyframes k0_10{0%{opacity:0}4.999%{opacity:1}100%{opacity:1}}@keyframes k0_11{0%{opacity:0}5.186%{opacity:1}100%{opacity:1}}@keyframes k0_12{0%{opacity:0}5.372%{opacity:1}100%{opacity:1}}@keyframes k0_13{0%{opacity:0}5.559%{opacity:1}100%{opacity:1}}@keyframes k0_14{0%{opacity:0}5.746%{opacity:1}100%{opacity:1}}@keyframes k0_15{0%{opacity:0}5.932%{opacity:1}100%{opacity:1}}@keyframes k0_16{0%{opacity:0}6.119%{opacity:1}100%{opacity:1}}@keyframes k0_17{0%{opacity:0}6.306%{opacity:1}100%{opacity:1}}@keyframes k0_18{0%{opacity:0}6.492%{opacity:1}100%{opacity:1}}@keyframes k0_19{0%{opacity:0}6.679%{opacity:1}100%{opacity:1}}@keyframes k0_20{0%{opacity:0}6.866%{opacity:1}100%{opacity:1}}@keyframes k0_21{0%{opacity:0}7.052%{opacity:1}100%{opacity:1}}@keyframes k0_22{0%{opacity:0}7.239%{opacity:1}100%{opacity:1}}@keyframes k0_23{0%{opacity:0}7.426%{opacity:1}100%{opacity:1}}@keyframes k0_24{0%{opacity:0}7.613%{opacity:1}100%{opacity:1}}@keyframes k0_25{0%{opacity:0}7.799%{opacity:1}100%{opacity:1}}@keyframes k0_26{0%{opacity:0}7.986%{opacity:1}100%{opacity:1}}@keyframes k0_27{0%{opacity:0}8.173%{opacity:1}100%{opacity:1}}@keyframes k0_28{0%{opacity:0}8.359%{opacity:1}100%{opacity:1}}@keyframes k0_29{0%{opacity:0}8.546%{opacity:1}100%{opacity:1}}@keyframes k0_30{0%{opacity:0}8.733%{opacity:1}100%{opacity:1}}@keyframes k0_31{0%{opacity:0}8.919%{opacity:1}100%{opacity:1}}@keyframes k0_32{0%{opacity:0}9.106%{opacity:1}100%{opacity:1}}@keyframes k0_33{0%{opacity:0}9.293%{opacity:1}100%{opacity:1}}@keyframes k0_34{0%{opacity:0}9.479%{opacity:1}100%{opacity:1}}@keyframes k0_35{0%{opacity:0}9.666%{opacity:1}100%{opacity:1}}@keyframes k0_36{0%{opacity:0}9.853%{opacity:1}100%{opacity:1}}@keyframes k0_37{0%{opacity:0}10.039%{opacity:1}100%{opacity:1}}@keyframes k0_38{0%{opacity:0}10.226%{opacity:1}100%{opacity:1}}@keyframes k0_39{0%{opacity:0}10.413%{opacity:1}100%{opacity:1}}@keyframes k0_40{0%{opacity:0}10.599%{opacity:1}100%{opacity:1}}@keyframes k0_41{0%{opacity:0}10.786%{opacity:1}100%{opacity:1}}@keyframes k0_42{0%{opacity:0}10.973%{opacity:1}100%{opacity:1}}@keyframes k0_43{0%{opacity:0}11.160%{opacity:1}100%{opacity:1}}@keyframes k0_44{0%{opacity:0}11.346%{opacity:1}100%{opacity:1}}@keyframes k0_45{0%{opacity:0}11.533%{opacity:1}100%{opacity:1}}@keyframes k0_46{0%{opacity:0}11.720%{opacity:1}100%{opacity:1}}@keyframes k0_47{0%{opacity:0}11.906%{opacity:1}100%{opacity:1}}@keyframes k0_48{0%{opacity:0}12.093%{opacity:1}100%{opacity:1}}@keyframes k0_49{0%{opacity:0}12.280%{opacity:1}100%{opacity:1}}@keyframes k0_50{0%{opacity:0}12.466%{opacity:1}100%{opacity:1}}@keyframes k0_51{0%{opacity:0}12.653%{opacity:1}100%{opacity:1}}@keyframes k0_52{0%{opacity:0}17.631%{opacity:1}100%{opacity:1}}@keyframes k0_53{0%{opacity:0}17.756%{opacity:1}100%{opacity:1}}@keyframes k0_54{0%{opacity:0}17.880%{opacity:1}100%{opacity:1}}@keyframes k0_55{0%{opacity:0}18.005%{opacity:1}100%{opacity:1}}@keyframes k0_56{0%{opacity:0}18.129%{opacity:1}100%{opacity:1}}@keyframes k0_57{0%{opacity:0}18.253%{opacity:1}100%{opacity:1}}@keyframes k0_58{0%{opacity:0}18.378%{opacity:1}100%{opacity:1}}@keyframes k0_59{0%{opacity:0}18.502%{opacity:1}100%{opacity:1}}@keyframes k0_60{0%{opacity:0}18.627%{opacity:1}100%{opacity:1}}@keyframes k0_61{0%{opacity:0}18.751%{opacity:1}100%{opacity:1}}@keyframes k0_62{0%{opacity:0}18.876%{opacity:1}100%{opacity:1}}@keyframes k0_63{0%{opacity:0}19.000%{opacity:1}100%{opacity:1}}@keyframes k0_64{0%{opacity:0}19.208%{opacity:1}100%{opacity:1}}@keyframes k0_65{0%{opacity:0}19.332%{opacity:1}100%{opacity:1}}@keyframes k0_66{0%{opacity:0}25.140%{opacity:1}100%{opacity:1}}@keyframes k0_67{0%{opacity:0}25.264%{opacity:1}100%{opacity:1}}@keyframes k0_68{0%{opacity:0}25.389%{opacity:1}100%{opacity:1}}@keyframes k1_72{0%{opacity:0}38.975%{opacity:1}100%{opacity:1}}@keyframes k1_73{0%{opacity:0}39.162%{opacity:1}100%{opacity:1}}@keyframes k1_74{0%{opacity:0}39.349%{opacity:1}100%{opacity:1}}@keyframes k1_75{0%{opacity:0}39.535%{opacity:1}100%{opacity:1}}@keyframes k1_76{0%{opacity:0}39.722%{opacity:1}100%{opacity:1}}@keyframes k1_77{0%{opacity:0}39.909%{opacity:1}100%{opacity:1}}@keyframes k1_78{0%{opacity:0}40.095%{opacity:1}100%{opacity:1}}@keyframes k1_79{0%{opacity:0}40.282%{opacity:1}100%{opacity:1}}@keyframes k1_80{0%{opacity:0}40.469%{opacity:1}100%{opacity:1}}@keyframes k1_81{0%{opacity:0}40.655%{opacity:1}100%{opacity:1}}@keyframes k1_82{0%{opacity:0}40.842%{opacity:1}100%{opacity:1}}@keyframes k1_83{0%{opacity:0}41.029%{opacity:1}100%{opacity:1}}@keyframes k1_84{0%{opacity:0}41.216%{opacity:1}100%{opacity:1}}@keyframes k1_85{0%{opacity:0}41.402%{opacity:1}100%{opacity:1}}@keyframes k1_86{0%{opacity:0}41.589%{opacity:1}100%{opacity:1}}@keyframes k1_87{0%{opacity:0}41.776%{opacity:1}100%{opacity:1}}@keyframes k1_88{0%{opacity:0}41.962%{opacity:1}100%{opacity:1}}@keyframes k1_89{0%{opacity:0}42.149%{opacity:1}100%{opacity:1}}@keyframes k1_90{0%{opacity:0}42.336%{opacity:1}100%{opacity:1}}@keyframes k1_91{0%{opacity:0}42.522%{opacity:1}100%{opacity:1}}@keyframes k1_92{0%{opacity:0}42.709%{opacity:1}100%{opacity:1}}@keyframes k1_93{0%{opacity:0}42.896%{opacity:1}100%{opacity:1}}@keyframes k1_94{0%{opacity:0}43.082%{opacity:1}100%{opacity:1}}@keyframes k1_95{0%{opacity:0}43.269%{opacity:1}100%{opacity:1}}@keyframes k1_96{0%{opacity:0}43.456%{opacity:1}100%{opacity:1}}@keyframes k1_97{0%{opacity:0}43.642%{opacity:1}100%{opacity:1}}@keyframes k1_98{0%{opacity:0}43.829%{opacity:1}100%{opacity:1}}@keyframes k1_99{0%{opacity:0}44.016%{opacity:1}100%{opacity:1}}@keyframes k1_100{0%{opacity:0}44.202%{opacity:1}100%{opacity:1}}@keyframes k1_101{0%{opacity:0}49.181%{opacity:1}100%{opacity:1}}@keyframes k1_102{0%{opacity:0}49.305%{opacity:1}100%{opacity:1}}@keyframes k1_103{0%{opacity:0}49.430%{opacity:1}100%{opacity:1}}@keyframes k1_104{0%{opacity:0}49.637%{opacity:1}100%{opacity:1}}@keyframes k1_105{0%{opacity:0}49.761%{opacity:1}100%{opacity:1}}@keyframes k1_106{0%{opacity:0}55.569%{opacity:1}100%{opacity:1}}@keyframes k1_107{0%{opacity:0}55.694%{opacity:1}100%{opacity:1}}@keyframes k1_108{0%{opacity:0}55.818%{opacity:1}100%{opacity:1}}@keyframes k2_112{0%{opacity:0}69.405%{opacity:1}100%{opacity:1}}@keyframes k2_113{0%{opacity:0}69.591%{opacity:1}100%{opacity:1}}@keyframes k2_114{0%{opacity:0}69.778%{opacity:1}100%{opacity:1}}@keyframes k2_115{0%{opacity:0}69.965%{opacity:1}100%{opacity:1}}@keyframes k2_116{0%{opacity:0}70.151%{opacity:1}100%{opacity:1}}@keyframes k2_117{0%{opacity:0}70.338%{opacity:1}100%{opacity:1}}@keyframes k2_118{0%{opacity:0}70.525%{opacity:1}100%{opacity:1}}@keyframes k2_119{0%{opacity:0}70.711%{opacity:1}100%{opacity:1}}@keyframes k2_120{0%{opacity:0}70.898%{opacity:1}100%{opacity:1}}@keyframes k2_121{0%{opacity:0}71.085%{opacity:1}100%{opacity:1}}@keyframes k2_122{0%{opacity:0}71.272%{opacity:1}100%{opacity:1}}@keyframes k2_123{0%{opacity:0}71.458%{opacity:1}100%{opacity:1}}@keyframes k2_124{0%{opacity:0}71.645%{opacity:1}100%{opacity:1}}@keyframes k2_125{0%{opacity:0}71.832%{opacity:1}100%{opacity:1}}@keyframes k2_126{0%{opacity:0}72.018%{opacity:1}100%{opacity:1}}@keyframes k2_127{0%{opacity:0}72.205%{opacity:1}100%{opacity:1}}@keyframes k2_128{0%{opacity:0}72.392%{opacity:1}100%{opacity:1}}@keyframes k2_129{0%{opacity:0}72.578%{opacity:1}100%{opacity:1}}@keyframes k2_130{0%{opacity:0}72.765%{opacity:1}100%{opacity:1}}@keyframes k2_131{0%{opacity:0}72.952%{opacity:1}100%{opacity:1}}@keyframes k2_132{0%{opacity:0}73.138%{opacity:1}100%{opacity:1}}@keyframes k2_133{0%{opacity:0}73.325%{opacity:1}100%{opacity:1}}@keyframes k2_134{0%{opacity:0}73.512%{opacity:1}100%{opacity:1}}@keyframes k2_135{0%{opacity:0}73.698%{opacity:1}100%{opacity:1}}@keyframes k2_136{0%{opacity:0}73.885%{opacity:1}100%{opacity:1}}@keyframes k2_137{0%{opacity:0}74.072%{opacity:1}100%{opacity:1}}@keyframes k2_138{0%{opacity:0}74.258%{opacity:1}100%{opacity:1}}@keyframes k2_139{0%{opacity:0}74.445%{opacity:1}100%{opacity:1}}@keyframes k2_140{0%{opacity:0}74.632%{opacity:1}100%{opacity:1}}@keyframes k2_141{0%{opacity:0}74.819%{opacity:1}100%{opacity:1}}@keyframes k2_142{0%{opacity:0}75.005%{opacity:1}100%{opacity:1}}@keyframes k2_143{0%{opacity:0}75.192%{opacity:1}100%{opacity:1}}@keyframes k2_144{0%{opacity:0}78.718%{opacity:1}100%{opacity:1}}@keyframes k2_145{0%{opacity:0}78.843%{opacity:1}100%{opacity:1}}@keyframes k2_146{0%{opacity:0}79.050%{opacity:1}100%{opacity:1}}@keyframes k2_147{0%{opacity:0}79.174%{opacity:1}100%{opacity:1}}@keyframes k2_148{0%{opacity:0}79.299%{opacity:1}100%{opacity:1}}@keyframes k2_149{0%{opacity:0}79.423%{opacity:1}100%{opacity:1}}@keyframes k2_150{0%{opacity:0}79.548%{opacity:1}100%{opacity:1}}@keyframes k2_151{0%{opacity:0}79.672%{opacity:1}100%{opacity:1}}.s0{animation:scene0 24.11s step-end infinite}.s1{animation:scene1 24.11s step-end infinite}.s2{animation:scene2 24.11s step-end infinite}@keyframes scene0{0%{opacity:0}3.319%{opacity:1}38.789%{opacity:0}100%{opacity:0}}@keyframes scene1{0%{opacity:0}38.789%{opacity:1}69.218%{opacity:0}100%{opacity:0}}@keyframes scene2{0%{opacity:0}69.218%{opacity:1}98.755%{opacity:0}100%{opacity:0}}</style>
+<rect width="930" height="421" rx="12" fill="#0f1716"/>
+<rect width="930" height="32" rx="12" fill="#1a2423"/><rect y="20" width="930" height="12" fill="#1a2423"/>
+<circle cx="20" cy="16" r="6" fill="#ff5f57"/>
+<circle cx="40" cy="16" r="6" fill="#febc2e"/>
+<circle cx="60" cy="16" r="6" fill="#28c840"/>
+<text x="465.0" y="21" text-anchor="middle" font-size="12" fill="#97a19e">jind — jev × find</text>
+<g class="s0" data-scene="0">
+<text x="20" y="44" fill="#97a19e" xml:space="preserve">$ </text>
+<text x="36.8" y="44" class="a" style="animation-name:k0_2" fill="#e6eae8" xml:space="preserve">j</text>
+<text x="45.2" y="44" class="a" style="animation-name:k0_3" fill="#e6eae8" xml:space="preserve">i</text>
+<text x="53.6" y="44" class="a" style="animation-name:k0_4" fill="#e6eae8" xml:space="preserve">n</text>
+<text x="62.0" y="44" class="a" style="animation-name:k0_5" fill="#e6eae8" xml:space="preserve">d</text>
+<text x="70.4" y="44" class="a" style="animation-name:k0_6" fill="#e6eae8" xml:space="preserve"> </text>
+<text x="78.8" y="44" class="a" style="animation-name:k0_7" fill="#e6eae8" xml:space="preserve">l</text>
+<text x="87.2" y="44" class="a" style="animation-name:k0_8" fill="#e6eae8" xml:space="preserve">o</text>
+<text x="95.6" y="44" class="a" style="animation-name:k0_9" fill="#e6eae8" xml:space="preserve">g</text>
+<text x="104.0" y="44" class="a" style="animation-name:k0_10" fill="#e6eae8" xml:space="preserve"> </text>
+<text x="112.4" y="44" class="a" style="animation-name:k0_11" fill="#e6eae8" xml:space="preserve">f</text>
+<text x="120.8" y="44" class="a" style="animation-name:k0_12" fill="#e6eae8" xml:space="preserve">i</text>
+<text x="129.2" y="44" class="a" style="animation-name:k0_13" fill="#e6eae8" xml:space="preserve">l</text>
+<text x="137.6" y="44" class="a" style="animation-name:k0_14" fill="#e6eae8" xml:space="preserve">e</text>
+<text x="146.0" y="44" class="a" style="animation-name:k0_15" fill="#e6eae8" xml:space="preserve">s</text>
+<text x="154.4" y="44" class="a" style="animation-name:k0_16" fill="#e6eae8" xml:space="preserve"> </text>
+<text x="162.8" y="44" class="a" style="animation-name:k0_17" fill="#e6eae8" xml:space="preserve">o</text>
+<text x="171.2" y="44" class="a" style="animation-name:k0_18" fill="#e6eae8" xml:space="preserve">l</text>
+<text x="179.6" y="44" class="a" style="animation-name:k0_19" fill="#e6eae8" xml:space="preserve">d</text>
+<text x="188.0" y="44" class="a" style="animation-name:k0_20" fill="#e6eae8" xml:space="preserve">e</text>
+<text x="196.4" y="44" class="a" style="animation-name:k0_21" fill="#e6eae8" xml:space="preserve">r</text>
+<text x="204.8" y="44" class="a" style="animation-name:k0_22" fill="#e6eae8" xml:space="preserve"> </text>
+<text x="213.2" y="44" class="a" style="animation-name:k0_23" fill="#e6eae8" xml:space="preserve">t</text>
+<text x="221.6" y="44" class="a" style="animation-name:k0_24" fill="#e6eae8" xml:space="preserve">h</text>
+<text x="230.0" y="44" class="a" style="animation-name:k0_25" fill="#e6eae8" xml:space="preserve">a</text>
+<text x="238.4" y="44" class="a" style="animation-name:k0_26" fill="#e6eae8" xml:space="preserve">n</text>
+<text x="246.8" y="44" class="a" style="animation-name:k0_27" fill="#e6eae8" xml:space="preserve"> </text>
+<text x="255.2" y="44" class="a" style="animation-name:k0_28" fill="#e6eae8" xml:space="preserve">7</text>
+<text x="263.6" y="44" class="a" style="animation-name:k0_29" fill="#e6eae8" xml:space="preserve"> </text>
+<text x="272.0" y="44" class="a" style="animation-name:k0_30" fill="#e6eae8" xml:space="preserve">d</text>
+<text x="280.4" y="44" class="a" style="animation-name:k0_31" fill="#e6eae8" xml:space="preserve">a</text>
+<text x="288.8" y="44" class="a" style="animation-name:k0_32" fill="#e6eae8" xml:space="preserve">y</text>
+<text x="297.2" y="44" class="a" style="animation-name:k0_33" fill="#e6eae8" xml:space="preserve">s</text>
+<text x="305.6" y="44" class="a" style="animation-name:k0_34" fill="#e6eae8" xml:space="preserve"> </text>
+<text x="314.0" y="44" class="a" style="animation-name:k0_35" fill="#e6eae8" xml:space="preserve">i</text>
+<text x="322.4" y="44" class="a" style="animation-name:k0_36" fill="#e6eae8" xml:space="preserve">n</text>
+<text x="330.8" y="44" class="a" style="animation-name:k0_37" fill="#e6eae8" xml:space="preserve"> </text>
+<text x="339.2" y="44" class="a" style="animation-name:k0_38" fill="#e6eae8" xml:space="preserve">l</text>
+<text x="347.6" y="44" class="a" style="animation-name:k0_39" fill="#e6eae8" xml:space="preserve">o</text>
+<text x="356.0" y="44" class="a" style="animation-name:k0_40" fill="#e6eae8" xml:space="preserve">g</text>
+<text x="364.4" y="44" class="a" style="animation-name:k0_41" fill="#e6eae8" xml:space="preserve">s</text>
+<text x="372.8" y="44" class="a" style="animation-name:k0_42" fill="#e6eae8" xml:space="preserve"> </text>
+<text x="381.2" y="44" class="a" style="animation-name:k0_43" fill="#e6eae8" xml:space="preserve">-</text>
+<text x="389.6" y="44" class="a" style="animation-name:k0_44" fill="#e6eae8" xml:space="preserve">-</text>
+<text x="398.0" y="44" class="a" style="animation-name:k0_45" fill="#e6eae8" xml:space="preserve">e</text>
+<text x="406.4" y="44" class="a" style="animation-name:k0_46" fill="#e6eae8" xml:space="preserve">x</text>
+<text x="414.8" y="44" class="a" style="animation-name:k0_47" fill="#e6eae8" xml:space="preserve">p</text>
+<text x="423.2" y="44" class="a" style="animation-name:k0_48" fill="#e6eae8" xml:space="preserve">l</text>
+<text x="431.6" y="44" class="a" style="animation-name:k0_49" fill="#e6eae8" xml:space="preserve">a</text>
+<text x="440.0" y="44" class="a" style="animation-name:k0_50" fill="#e6eae8" xml:space="preserve">i</text>
+<text x="448.4" y="44" class="a" style="animation-name:k0_51" fill="#e6eae8" xml:space="preserve">n</text>
+<text x="20" y="63" class="a" style="animation-name:k0_52" xml:space="preserve"><tspan fill="#97a19e">word   role             conf  by    note</tspan></text>
+<text x="20" y="82" class="a" style="animation-name:k0_53" xml:space="preserve"><tspan fill="#e6eae8">log    </tspan><tspan fill="#8fd9be">extension</tspan><tspan fill="#e6eae8">        </tspan><tspan fill="#f0c96a">0.62</tspan><tspan fill="#e6eae8">  </tspan><tspan fill="#7aa2f7">jev </tspan><tspan fill="#e6eae8">  </tspan><tspan fill="#97a19e">extension 0.65, name_word 0.19</tspan></text>
+<text x="20" y="101" class="a" style="animation-name:k0_54" xml:space="preserve"><tspan fill="#e6eae8">files  </tspan><tspan fill="#8fd9be">type</tspan><tspan fill="#e6eae8">             </tspan><tspan fill="#8fd9be">1.00</tspan><tspan fill="#e6eae8">  </tspan><tspan fill="#97a19e">rule</tspan><tspan fill="#e6eae8">  </tspan><tspan fill="#97a19e">→ f</tspan></text>
+<text x="20" y="120" class="a" style="animation-name:k0_55" xml:space="preserve"><tspan fill="#e6eae8">older  </tspan><tspan fill="#97a19e">qualifier</tspan><tspan fill="#e6eae8">        </tspan><tspan fill="#8fd9be">1.00</tspan><tspan fill="#e6eae8">  </tspan><tspan fill="#97a19e">rule</tspan><tspan fill="#e6eae8">  </tspan></text>
+<text x="20" y="139" class="a" style="animation-name:k0_56" xml:space="preserve"><tspan fill="#e6eae8">than   </tspan><tspan fill="#97a19e">qualifier</tspan><tspan fill="#e6eae8">        </tspan><tspan fill="#8fd9be">1.00</tspan><tspan fill="#e6eae8">  </tspan><tspan fill="#97a19e">rule</tspan><tspan fill="#e6eae8">  </tspan></text>
+<text x="20" y="158" class="a" style="animation-name:k0_57" xml:space="preserve"><tspan fill="#e6eae8">7      </tspan><tspan fill="#7ed6d4">time_amount</tspan><tspan fill="#e6eae8">      </tspan><tspan fill="#8fd9be">0.92</tspan><tspan fill="#e6eae8">  </tspan><tspan fill="#7aa2f7">jev </tspan><tspan fill="#e6eae8">  </tspan><tspan fill="#97a19e">≥ 7 days; at least p=0.92; time_amount 1.00, action 0.00</tspan></text>
+<text x="20" y="177" class="a" style="animation-name:k0_58" xml:space="preserve"><tspan fill="#e6eae8">days   </tspan><tspan fill="#7ed6d4">unit</tspan><tspan fill="#e6eae8">             </tspan><tspan fill="#8fd9be">1.00</tspan><tspan fill="#e6eae8">  </tspan><tspan fill="#97a19e">rule</tspan><tspan fill="#e6eae8">  </tspan></text>
+<text x="20" y="196" class="a" style="animation-name:k0_59" xml:space="preserve"><tspan fill="#e6eae8">in     </tspan><tspan fill="#97a19e">noise</tspan><tspan fill="#e6eae8">            </tspan><tspan fill="#8fd9be">1.00</tspan><tspan fill="#e6eae8">  </tspan><tspan fill="#97a19e">rule</tspan><tspan fill="#e6eae8">  </tspan></text>
+<text x="20" y="215" class="a" style="animation-name:k0_60" xml:space="preserve"><tspan fill="#e6eae8">logs   </tspan><tspan fill="#7aa2f7">path</tspan><tspan fill="#e6eae8">             </tspan><tspan fill="#8fd9be">1.00</tspan><tspan fill="#e6eae8">  </tspan><tspan fill="#97a19e">rule</tspan><tspan fill="#e6eae8">  </tspan><tspan fill="#97a19e">existing directory</tspan></text>
+<text x="20" y="234" class="a" style="animation-name:k0_61" xml:space="preserve"><tspan fill="#97a19e">jev: typesafe/jev-1.13-20260917 · 5 questions · 281 ms · 1746 in / 510 out tokens · $0.000073</tspan></text>
+<text x="20" y="253" class="a" style="animation-name:k0_62" xml:space="preserve"></text>
+<text x="20" y="272" class="a" style="animation-name:k0_63" xml:space="preserve"><tspan fill="#e6eae8" font-weight="700">find</tspan><tspan fill="#e6eae8"> logs </tspan><tspan fill="#7ed6d4">-type</tspan><tspan fill="#e6eae8"> f </tspan><tspan fill="#7ed6d4">-iname</tspan><tspan fill="#e6eae8"> &#x27;*.log&#x27; </tspan><tspan fill="#7ed6d4">-mtime</tspan><tspan fill="#e6eae8"> +7</tspan></text>
+<text x="20" y="291" class="a" style="animation-name:k0_64" xml:space="preserve"></text>
+<text x="20" y="310" class="a" style="animation-name:k0_65" xml:space="preserve"><tspan fill="#f0c96a">run this? (interpreted by jev, confidence 0.62)</tspan><tspan fill="#e6eae8"> </tspan><tspan fill="#97a19e">[Y/n/e]</tspan><tspan fill="#e6eae8"> y</tspan></text>
+<text x="20" y="329" class="a" style="animation-name:k0_66" xml:space="preserve"></text>
+<text x="20" y="348" class="a" style="animation-name:k0_67" xml:space="preserve"><tspan fill="#e6eae8">logs/system.log</tspan></text>
+<text x="20" y="367" class="a" style="animation-name:k0_68" xml:space="preserve"><tspan fill="#e6eae8">logs/install.log</tspan></text>
+</g>
+<g class="s1" data-scene="1">
+<text x="20" y="44" fill="#97a19e" xml:space="preserve">$ </text>
+<text x="36.8" y="44" class="a" style="animation-name:k1_72" fill="#e6eae8" xml:space="preserve">j</text>
+<text x="45.2" y="44" class="a" style="animation-name:k1_73" fill="#e6eae8" xml:space="preserve">i</text>
+<text x="53.6" y="44" class="a" style="animation-name:k1_74" fill="#e6eae8" xml:space="preserve">n</text>
+<text x="62.0" y="44" class="a" style="animation-name:k1_75" fill="#e6eae8" xml:space="preserve">d</text>
+<text x="70.4" y="44" class="a" style="animation-name:k1_76" fill="#e6eae8" xml:space="preserve"> </text>
+<text x="78.8" y="44" class="a" style="animation-name:k1_77" fill="#e6eae8" xml:space="preserve">r</text>
+<text x="87.2" y="44" class="a" style="animation-name:k1_78" fill="#e6eae8" xml:space="preserve">s</text>
+<text x="95.6" y="44" class="a" style="animation-name:k1_79" fill="#e6eae8" xml:space="preserve"> </text>
+<text x="104.0" y="44" class="a" style="animation-name:k1_80" fill="#e6eae8" xml:space="preserve">e</text>
+<text x="112.4" y="44" class="a" style="animation-name:k1_81" fill="#e6eae8" xml:space="preserve">d</text>
+<text x="120.8" y="44" class="a" style="animation-name:k1_82" fill="#e6eae8" xml:space="preserve">i</text>
+<text x="129.2" y="44" class="a" style="animation-name:k1_83" fill="#e6eae8" xml:space="preserve">t</text>
+<text x="137.6" y="44" class="a" style="animation-name:k1_84" fill="#e6eae8" xml:space="preserve">e</text>
+<text x="146.0" y="44" class="a" style="animation-name:k1_85" fill="#e6eae8" xml:space="preserve">d</text>
+<text x="154.4" y="44" class="a" style="animation-name:k1_86" fill="#e6eae8" xml:space="preserve"> </text>
+<text x="162.8" y="44" class="a" style="animation-name:k1_87" fill="#e6eae8" xml:space="preserve">w</text>
+<text x="171.2" y="44" class="a" style="animation-name:k1_88" fill="#e6eae8" xml:space="preserve">i</text>
+<text x="179.6" y="44" class="a" style="animation-name:k1_89" fill="#e6eae8" xml:space="preserve">t</text>
+<text x="188.0" y="44" class="a" style="animation-name:k1_90" fill="#e6eae8" xml:space="preserve">h</text>
+<text x="196.4" y="44" class="a" style="animation-name:k1_91" fill="#e6eae8" xml:space="preserve">i</text>
+<text x="204.8" y="44" class="a" style="animation-name:k1_92" fill="#e6eae8" xml:space="preserve">n</text>
+<text x="213.2" y="44" class="a" style="animation-name:k1_93" fill="#e6eae8" xml:space="preserve"> </text>
+<text x="221.6" y="44" class="a" style="animation-name:k1_94" fill="#e6eae8" xml:space="preserve">a</text>
+<text x="230.0" y="44" class="a" style="animation-name:k1_95" fill="#e6eae8" xml:space="preserve">n</text>
+<text x="238.4" y="44" class="a" style="animation-name:k1_96" fill="#e6eae8" xml:space="preserve"> </text>
+<text x="246.8" y="44" class="a" style="animation-name:k1_97" fill="#e6eae8" xml:space="preserve">h</text>
+<text x="255.2" y="44" class="a" style="animation-name:k1_98" fill="#e6eae8" xml:space="preserve">o</text>
+<text x="263.6" y="44" class="a" style="animation-name:k1_99" fill="#e6eae8" xml:space="preserve">u</text>
+<text x="272.0" y="44" class="a" style="animation-name:k1_100" fill="#e6eae8" xml:space="preserve">r</text>
+<text x="20" y="63" class="a" style="animation-name:k1_101" xml:space="preserve"><tspan fill="#97a19e">jev: typesafe/jev-1.13-20260917 · 4 questions · 269 ms · 1240 in / 374 out tokens · $0.000052</tspan></text>
+<text x="20" y="82" class="a" style="animation-name:k1_102" xml:space="preserve"></text>
+<text x="20" y="101" class="a" style="animation-name:k1_103" xml:space="preserve"><tspan fill="#e6eae8" font-weight="700">find</tspan><tspan fill="#e6eae8"> . </tspan><tspan fill="#7ed6d4">-iname</tspan><tspan fill="#e6eae8"> &#x27;*.rs&#x27; </tspan><tspan fill="#7ed6d4">-mmin</tspan><tspan fill="#e6eae8"> -60</tspan></text>
+<text x="20" y="120" class="a" style="animation-name:k1_104" xml:space="preserve"></text>
+<text x="20" y="139" class="a" style="animation-name:k1_105" xml:space="preserve"><tspan fill="#f0c96a">run this? (interpreted by jev, confidence 0.81)</tspan><tspan fill="#e6eae8"> </tspan><tspan fill="#97a19e">[Y/n/e]</tspan><tspan fill="#e6eae8"> y</tspan></text>
+<text x="20" y="158" class="a" style="animation-name:k1_106" xml:space="preserve"></text>
+<text x="20" y="177" class="a" style="animation-name:k1_107" xml:space="preserve"><tspan fill="#e6eae8">./src/net/client.rs</tspan></text>
+<text x="20" y="196" class="a" style="animation-name:k1_108" xml:space="preserve"><tspan fill="#e6eae8">./src/main.rs</tspan></text>
+</g>
+<g class="s2" data-scene="2">
+<text x="20" y="44" fill="#97a19e" xml:space="preserve">$ </text>
+<text x="36.8" y="44" class="a" style="animation-name:k2_112" fill="#e6eae8" xml:space="preserve">j</text>
+<text x="45.2" y="44" class="a" style="animation-name:k2_113" fill="#e6eae8" xml:space="preserve">i</text>
+<text x="53.6" y="44" class="a" style="animation-name:k2_114" fill="#e6eae8" xml:space="preserve">n</text>
+<text x="62.0" y="44" class="a" style="animation-name:k2_115" fill="#e6eae8" xml:space="preserve">d</text>
+<text x="70.4" y="44" class="a" style="animation-name:k2_116" fill="#e6eae8" xml:space="preserve"> </text>
+<text x="78.8" y="44" class="a" style="animation-name:k2_117" fill="#e6eae8" xml:space="preserve">&#x27;</text>
+<text x="87.2" y="44" class="a" style="animation-name:k2_118" fill="#e6eae8" xml:space="preserve">*</text>
+<text x="95.6" y="44" class="a" style="animation-name:k2_119" fill="#e6eae8" xml:space="preserve">.</text>
+<text x="104.0" y="44" class="a" style="animation-name:k2_120" fill="#e6eae8" xml:space="preserve">t</text>
+<text x="112.4" y="44" class="a" style="animation-name:k2_121" fill="#e6eae8" xml:space="preserve">m</text>
+<text x="120.8" y="44" class="a" style="animation-name:k2_122" fill="#e6eae8" xml:space="preserve">p</text>
+<text x="129.2" y="44" class="a" style="animation-name:k2_123" fill="#e6eae8" xml:space="preserve">&#x27;</text>
+<text x="137.6" y="44" class="a" style="animation-name:k2_124" fill="#e6eae8" xml:space="preserve"> </text>
+<text x="146.0" y="44" class="a" style="animation-name:k2_125" fill="#e6eae8" xml:space="preserve">e</text>
+<text x="154.4" y="44" class="a" style="animation-name:k2_126" fill="#e6eae8" xml:space="preserve">x</text>
+<text x="162.8" y="44" class="a" style="animation-name:k2_127" fill="#e6eae8" xml:space="preserve">c</text>
+<text x="171.2" y="44" class="a" style="animation-name:k2_128" fill="#e6eae8" xml:space="preserve">e</text>
+<text x="179.6" y="44" class="a" style="animation-name:k2_129" fill="#e6eae8" xml:space="preserve">p</text>
+<text x="188.0" y="44" class="a" style="animation-name:k2_130" fill="#e6eae8" xml:space="preserve">t</text>
+<text x="196.4" y="44" class="a" style="animation-name:k2_131" fill="#e6eae8" xml:space="preserve"> </text>
+<text x="204.8" y="44" class="a" style="animation-name:k2_132" fill="#e6eae8" xml:space="preserve">b</text>
+<text x="213.2" y="44" class="a" style="animation-name:k2_133" fill="#e6eae8" xml:space="preserve">u</text>
+<text x="221.6" y="44" class="a" style="animation-name:k2_134" fill="#e6eae8" xml:space="preserve">i</text>
+<text x="230.0" y="44" class="a" style="animation-name:k2_135" fill="#e6eae8" xml:space="preserve">l</text>
+<text x="238.4" y="44" class="a" style="animation-name:k2_136" fill="#e6eae8" xml:space="preserve">d</text>
+<text x="246.8" y="44" class="a" style="animation-name:k2_137" fill="#e6eae8" xml:space="preserve"> </text>
+<text x="255.2" y="44" class="a" style="animation-name:k2_138" fill="#e6eae8" xml:space="preserve">d</text>
+<text x="263.6" y="44" class="a" style="animation-name:k2_139" fill="#e6eae8" xml:space="preserve">e</text>
+<text x="272.0" y="44" class="a" style="animation-name:k2_140" fill="#e6eae8" xml:space="preserve">l</text>
+<text x="280.4" y="44" class="a" style="animation-name:k2_141" fill="#e6eae8" xml:space="preserve">e</text>
+<text x="288.8" y="44" class="a" style="animation-name:k2_142" fill="#e6eae8" xml:space="preserve">t</text>
+<text x="297.2" y="44" class="a" style="animation-name:k2_143" fill="#e6eae8" xml:space="preserve">e</text>
+<text x="20" y="63" class="a" style="animation-name:k2_144" xml:space="preserve"></text>
+<text x="20" y="82" class="a" style="animation-name:k2_145" xml:space="preserve"><tspan fill="#e6eae8" font-weight="700">find</tspan><tspan fill="#e6eae8"> . </tspan><tspan fill="#7ed6d4">-name</tspan><tspan fill="#e6eae8"> &#x27;*.tmp&#x27; </tspan><tspan fill="#97a19e">-not</tspan><tspan fill="#e6eae8"> </tspan><tspan fill="#7ed6d4">-path</tspan><tspan fill="#e6eae8"> &#x27;*/build/*&#x27; </tspan><tspan fill="#97a19e">-not</tspan><tspan fill="#e6eae8"> </tspan><tspan fill="#7ed6d4">-path</tspan><tspan fill="#e6eae8"> &#x27;*/build&#x27; </tspan><tspan fill="#f07178">-delete</tspan></text>
+<text x="20" y="101" class="a" style="animation-name:k2_146" xml:space="preserve"></text>
+<text x="20" y="120" class="a" style="animation-name:k2_147" xml:space="preserve"><tspan fill="#e6eae8">  ./notes/draft.tmp</tspan></text>
+<text x="20" y="139" class="a" style="animation-name:k2_148" xml:space="preserve"><tspan fill="#e6eae8">  ./notes/old.tmp</tspan></text>
+<text x="20" y="158" class="a" style="animation-name:k2_149" xml:space="preserve"><tspan fill="#e6eae8">  ./src/scratch.tmp</tspan></text>
+<text x="20" y="177" class="a" style="animation-name:k2_150" xml:space="preserve"></text>
+<text x="20" y="196" class="a" style="animation-name:k2_151" xml:space="preserve"><tspan fill="#f07178">delete these 3 entries? (confidence 1.00)</tspan><tspan fill="#e6eae8"> </tspan><tspan fill="#97a19e">[y/N/e]</tspan><tspan fill="#e6eae8"> y</tspan></text>
+</g>
+</svg>

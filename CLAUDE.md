@@ -42,7 +42,7 @@ jurl から `color.rs` `jev/{mod,client}.rs` `setup.rs` をほぼそのままコ
 - `png images …` の `images` のような分類語は name_word 0.46 で拒否になる
 - `jind demo` は無い(ユーザーが `jind demo` を打った)。jurl の `demo.rs`(↑↓ picker、raw termios)を流用し、一時ディレクトリに見本ファイルを作ってそこで回す案を提示済み。**未承認**
 - 時間は mtime のみ。`yesterday`(ちょうど 1 日)や `-newer file` は無い
-- README の例は `-n` で実出力と一致することを確認済み。SVG のヒーロー画像や端末デモは作っていない(jurl にはある。`../jurl/docs/make-demo.py`)
+- README は jurl と同じ構成(`docs/hero.svg` `flow.svg` `demo.svg`)。demo は `docs/demo-capture.json`(pty で取った実出力)→ `docs/make-demo.py`。例は `-n` で実出力と一致することを確認済み(2026-09-22)
 - Windows は未検証(jurl と同様)
 
 ## 作業ルール(ユーザーから)
