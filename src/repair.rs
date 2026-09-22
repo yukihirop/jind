@@ -14,16 +14,36 @@ fn attach_units(tokens: &mut [Token]) {
         if tokens[i].role != Some(Role::Unit) {
             continue;
         }
-        let Some(u) = tokens[i].fixed.as_deref().and_then(crate::token::Unit::from_key) else { continue };
+        let Some(u) = tokens[i]
+            .fixed
+            .as_deref()
+            .and_then(crate::token::Unit::from_key)
+        else {
+            continue;
+        };
         let prev = &mut tokens[i - 1];
         let Some(mut am) = prev.amount else { continue };
-        if !matches!(prev.role, Some(Role::TimeAmount) | Some(Role::SizeAmount) | Some(Role::Depth)) {
+        if !matches!(
+            prev.role,
+            Some(Role::TimeAmount) | Some(Role::SizeAmount) | Some(Role::Depth)
+        ) {
             continue;
         }
-        let want = if u.is_time() { Role::TimeAmount } else { Role::SizeAmount };
+        let want = if u.is_time() {
+            Role::TimeAmount
+        } else {
+            Role::SizeAmount
+        };
         if prev.role != Some(want) {
             let old = prev.role.map(|r| r.key()).unwrap_or("?");
-            prev.note = Some(format!("{old} → {} (unit says so){}", want.key(), prev.note.as_deref().map(|n| format!("; {n}")).unwrap_or_default()));
+            prev.note = Some(format!(
+                "{old} → {} (unit says so){}",
+                want.key(),
+                prev.note
+                    .as_deref()
+                    .map(|n| format!("; {n}"))
+                    .unwrap_or_default()
+            ));
             prev.role = Some(want);
             if prev.source == Source::Jev {
                 // 役割は単位で確定したので、jev の役割確率ではなく向きの確からしさだけが残る。
@@ -47,14 +67,27 @@ fn mark_depth(tokens: &mut [Token]) {
             if j >= n {
                 continue;
             }
-            let Some(mut am) = tokens[j].amount else { continue };
-            if am.unit.is_some() || !matches!(tokens[j].role, Some(Role::TimeAmount) | Some(Role::SizeAmount) | Some(Role::Depth) | None) {
+            let Some(mut am) = tokens[j].amount else {
+                continue;
+            };
+            if am.unit.is_some()
+                || !matches!(
+                    tokens[j].role,
+                    Some(Role::TimeAmount) | Some(Role::SizeAmount) | Some(Role::Depth) | None
+                )
+            {
                 continue;
             }
             let t = &mut tokens[j];
             if t.role != Some(Role::Depth) {
                 let old = t.role.map(|r| r.key()).unwrap_or("?");
-                t.note = Some(format!("{old} → depth (next to \"{marker}\"){}", t.note.as_deref().map(|n| format!("; {n}")).unwrap_or_default()));
+                t.note = Some(format!(
+                    "{old} → depth (next to \"{marker}\"){}",
+                    t.note
+                        .as_deref()
+                        .map(|n| format!("; {n}"))
+                        .unwrap_or_default()
+                ));
             }
             t.role = Some(Role::Depth);
             if t.source == Source::Rule {
@@ -80,8 +113,12 @@ fn mark_excludes(tokens: &mut [Token]) {
         while j < tokens.len() {
             match tokens[j].role {
                 Some(Role::Noise) => {}
-                Some(Role::Path) if !crate::rules::is_path_like(&tokens[j].text) => to_exclude(&mut tokens[j]),
-                Some(Role::NamePattern) | Some(Role::Extension) | Some(Role::NameWord) => to_exclude(&mut tokens[j]),
+                Some(Role::Path) if !crate::rules::is_path_like(&tokens[j].text) => {
+                    to_exclude(&mut tokens[j])
+                }
+                Some(Role::NamePattern) | Some(Role::Extension) | Some(Role::NameWord) => {
+                    to_exclude(&mut tokens[j])
+                }
                 Some(Role::Exclude) => {}
                 _ => break,
             }
@@ -93,7 +130,13 @@ fn mark_excludes(tokens: &mut [Token]) {
 
 fn to_exclude(t: &mut Token) {
     let old = t.role.map(|r| r.key()).unwrap_or("?");
-    t.note = Some(format!("{old} → exclude (after except/skip){}", t.note.as_deref().map(|n| format!("; {n}")).unwrap_or_default()));
+    t.note = Some(format!(
+        "{old} → exclude (after except/skip){}",
+        t.note
+            .as_deref()
+            .map(|n| format!("; {n}"))
+            .unwrap_or_default()
+    ));
     t.role = Some(Role::Exclude);
 }
 
@@ -113,7 +156,11 @@ mod tests {
         ts[0].role = Some(Role::SizeAmount); // jev が間違えた想定
         ts[0].source = Source::Jev;
         ts[0].confidence = 0.6;
-        ts[0].amount = Some(Amount { n: 7.0, unit: None, at_least: Some(true) });
+        ts[0].amount = Some(Amount {
+            n: 7.0,
+            unit: None,
+            at_least: Some(true),
+        });
         repair(&mut ts);
         assert_eq!(ts[0].role, Some(Role::TimeAmount));
         assert_eq!(ts[0].amount.unwrap().unit, Some(Unit::Days));

@@ -18,7 +18,11 @@ pub struct OpenRouter {
 
 impl Oracle for OpenRouter {
     fn decide(&self, state: Value, questions: Questions) -> Result<DecisionsResponse, JindError> {
-        let body = DecisionsRequest { model: self.model.clone(), state, questions };
+        let body = DecisionsRequest {
+            model: self.model.clone(),
+            state,
+            questions,
+        };
         let agent: ureq::Agent = ureq::Agent::config_builder()
             .timeout_global(Some(self.timeout))
             .http_status_as_error(false)
@@ -47,7 +51,10 @@ impl Oracle for OpenRouter {
             let retryable = status == 429 || status >= 500;
             let text = res.body_mut().read_to_string().unwrap_or_default();
             if !retryable || attempt >= self.max_retries {
-                return Err(JindError::Jev(format!("HTTP {status}: {}", text.chars().take(500).collect::<String>())));
+                return Err(JindError::Jev(format!(
+                    "HTTP {status}: {}",
+                    text.chars().take(500).collect::<String>()
+                )));
             }
             let delay = Duration::from_millis(500 * 2u64.pow(attempt));
             attempt += 1;

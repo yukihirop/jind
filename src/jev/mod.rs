@@ -11,19 +11,29 @@ use std::collections::BTreeMap;
 #[derive(Debug, Clone, Serialize)]
 #[serde(tag = "type", rename_all = "lowercase")]
 pub enum Question {
-    Choice { instructions: String, criteria: BTreeMap<String, Option<String>> },
-    Noul { instructions: String },
+    Choice {
+        instructions: String,
+        criteria: BTreeMap<String, Option<String>>,
+    },
+    Noul {
+        instructions: String,
+    },
 }
 
 pub fn choice(instructions: impl Into<String>, criteria: &[(&str, Option<&str>)]) -> Question {
     Question::Choice {
         instructions: instructions.into(),
-        criteria: criteria.iter().map(|(k, v)| (k.to_string(), v.map(str::to_string))).collect(),
+        criteria: criteria
+            .iter()
+            .map(|(k, v)| (k.to_string(), v.map(str::to_string)))
+            .collect(),
     }
 }
 
 pub fn noul(instructions: impl Into<String>) -> Question {
-    Question::Noul { instructions: instructions.into() }
+    Question::Noul {
+        instructions: instructions.into(),
+    }
 }
 
 #[derive(Debug, Clone, Deserialize)]
@@ -84,7 +94,11 @@ impl Answer {
             Answer::Choice { probabilities, .. } => {
                 let mut v: Vec<(&String, &f32)> = probabilities.iter().collect();
                 v.sort_by(|a, b| b.1.partial_cmp(a.1).unwrap_or(std::cmp::Ordering::Equal));
-                v.iter().take(2).map(|(k, p)| format!("{k} {:.2}", p)).collect::<Vec<_>>().join(", ")
+                v.iter()
+                    .take(2)
+                    .map(|(k, p)| format!("{k} {:.2}", p))
+                    .collect::<Vec<_>>()
+                    .join(", ")
             }
             Answer::Noul { noul } => format!("p(yes) {noul:.2}"),
             Answer::Score { score, .. } => format!("score {score:.2}"),
@@ -123,5 +137,9 @@ pub struct Usage {
 
 /// 実機(client) とテストのモックを差し替えるための境界。
 pub trait Oracle {
-    fn decide(&self, state: Value, questions: Questions) -> Result<DecisionsResponse, crate::error::JindError>;
+    fn decide(
+        &self,
+        state: Value,
+        questions: Questions,
+    ) -> Result<DecisionsResponse, crate::error::JindError>;
 }

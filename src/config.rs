@@ -53,14 +53,20 @@ pub fn path() -> Option<PathBuf> {
         return Some(PathBuf::from(p));
     }
     let home = std::env::var_os("HOME")?;
-    Some(PathBuf::from(home).join(".config").join("jind").join("config.toml"))
+    Some(
+        PathBuf::from(home)
+            .join(".config")
+            .join("jind")
+            .join("config.toml"),
+    )
 }
 
 pub fn load() -> Result<Config, JindError> {
     let mut cfg = match path() {
         Some(p) if p.exists() => {
             let text = std::fs::read_to_string(&p)?;
-            toml::from_str::<Config>(&text).map_err(|e| JindError::Config(format!("{}: {e}", p.display())))?
+            toml::from_str::<Config>(&text)
+                .map_err(|e| JindError::Config(format!("{}: {e}", p.display())))?
         }
         _ => Config::default(),
     };
@@ -79,10 +85,17 @@ pub fn load() -> Result<Config, JindError> {
 /// ~/.config/jurl/config.toml の [jev] api_key。無ければ None。
 fn jurl_api_key() -> Option<String> {
     let home = std::env::var_os("HOME")?;
-    let p = PathBuf::from(home).join(".config").join("jurl").join("config.toml");
+    let p = PathBuf::from(home)
+        .join(".config")
+        .join("jurl")
+        .join("config.toml");
     let text = std::fs::read_to_string(p).ok()?;
     let t: toml::Table = toml::from_str(&text).ok()?;
-    t.get("jev")?.get("api_key")?.as_str().filter(|k| !k.is_empty()).map(str::to_string)
+    t.get("jev")?
+        .get("api_key")?
+        .as_str()
+        .filter(|k| !k.is_empty())
+        .map(str::to_string)
 }
 
 /// aliases を展開し、値の中の `$VAR` を環境変数で置き換える。

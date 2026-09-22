@@ -1,10 +1,10 @@
 //! jev に渡す state / questions の組み立てと、answers のトークンへの書き戻し。
 //! 候補はすべてコード側の固定表。jev は候補から選ぶだけで、入力に無い値は作らない。
 
-use super::{choice, noul, Answers, Questions};
+use super::{Answers, Questions, choice, noul};
 use crate::rules::{ACTIONS, TYPES};
 use crate::token::{Role, Source, Token, Unit};
-use serde_json::{json, Value};
+use serde_json::{Value, json};
 
 const TOOL_DESC: &str = "jind: turns loosely ordered command words into one `find` command. \
 Words may be misspelled, split, or out of order. Numbers may be ages (older than 7 days), sizes (over 10 MB) or depths (2 levels).";
@@ -14,7 +14,9 @@ pub struct Built {
     pub questions: Questions,
 }
 
-const UNIT_KEYS: &[&str] = &["minutes", "hours", "days", "weeks", "bytes", "KB", "MB", "GB"];
+const UNIT_KEYS: &[&str] = &[
+    "minutes", "hours", "days", "weeks", "bytes", "KB", "MB", "GB",
+];
 
 /// 規則で決まらなかったトークンについて質問を作る。state には全トークンを入れる(文脈のため)。
 pub fn build(tokens: &[Token]) -> Built {
@@ -27,7 +29,10 @@ pub fn build(tokens: &[Token]) -> Built {
     }
 
     let mut questions = Questions::new();
-    let role_criteria: Vec<(&str, Option<&str>)> = Role::JEV_CHOICES.iter().map(|(_, k, d)| (*k, Some(*d))).collect();
+    let role_criteria: Vec<(&str, Option<&str>)> = Role::JEV_CHOICES
+        .iter()
+        .map(|(_, k, d)| (*k, Some(*d)))
+        .collect();
 
     for (i, t) in tokens.iter().enumerate() {
         let w = &t.text;
@@ -42,13 +47,20 @@ pub fn build(tokens: &[Token]) -> Built {
         }
         questions.insert(
             format!("role.{i}"),
-            choice(format!("What is the role of `tokens[{i}]` (\"{w}\") in this find command?"), &role_criteria),
+            choice(
+                format!("What is the role of `tokens[{i}]` (\"{w}\") in this find command?"),
+                &role_criteria,
+            ),
         );
         if let Some(a) = t.amount {
             // 次の語が単位(`7 days`)なら単位は聞かない。repair が付ける。
-            let unit_follows = tokens.get(i + 1).map(|n| n.role == Some(Role::Unit)).unwrap_or(false);
+            let unit_follows = tokens
+                .get(i + 1)
+                .map(|n| n.role == Some(Role::Unit))
+                .unwrap_or(false);
             if a.unit.is_none() && !unit_follows {
-                let mut c: Vec<(&str, Option<&str>)> = UNIT_KEYS.iter().map(|u| (*u, None)).collect();
+                let mut c: Vec<(&str, Option<&str>)> =
+                    UNIT_KEYS.iter().map(|u| (*u, None)).collect();
                 c.push(("none", Some("A plain count (a depth), no unit")));
                 questions.insert(
                     format!("unit.{i}"),
@@ -59,13 +71,18 @@ pub fn build(tokens: &[Token]) -> Built {
                 questions.insert(format!("atleast.{i}"), noul(atleast_q(i, w)));
             }
         } else if could_be_word(w) {
-            let mut c: Vec<(&str, Option<&str>)> = TYPES.iter().filter(|(k, _)| k.len() > 1).map(|(k, _)| (*k, None)).collect();
+            let mut c: Vec<(&str, Option<&str>)> = TYPES
+                .iter()
+                .filter(|(k, _)| k.len() > 1)
+                .map(|(k, _)| (*k, None))
+                .collect();
             c.push(("none", Some("Not an entry type")));
             questions.insert(
                 format!("type_typo.{i}"),
                 choice(format!("If `tokens[{i}]` (\"{w}\") is a misspelled entry type word, which one was intended?"), &c),
             );
-            let mut c: Vec<(&str, Option<&str>)> = ACTIONS.iter().map(|(k, _)| (*k, None)).collect();
+            let mut c: Vec<(&str, Option<&str>)> =
+                ACTIONS.iter().map(|(k, _)| (*k, None)).collect();
             c.push(("none", Some("Not an action")));
             questions.insert(
                 format!("action_typo.{i}"),
@@ -105,12 +122,20 @@ pub fn apply(tokens: &mut [Token], answers: &Answers) {
                 t.amount = Some(am);
                 t.source = Source::Jev;
                 t.confidence = p.max(1.0 - p);
-                t.note = Some(format!("{} p={p:.2}; {}", if p > 0.5 { "at least" } else { "at most" }, t.note.as_deref().unwrap_or("")));
+                t.note = Some(format!(
+                    "{} p={p:.2}; {}",
+                    if p > 0.5 { "at least" } else { "at most" },
+                    t.note.as_deref().unwrap_or("")
+                ));
             }
             continue;
         }
-        let Some(a) = answers.get(&format!("role.{i}")) else { continue };
-        let Some(role) = a.choice().and_then(Role::from_key) else { continue };
+        let Some(a) = answers.get(&format!("role.{i}")) else {
+            continue;
+        };
+        let Some(role) = a.choice().and_then(Role::from_key) else {
+            continue;
+        };
         t.role = Some(role);
         t.confidence = a.certainty();
         t.source = Source::Jev;
@@ -144,7 +169,11 @@ pub fn apply(tokens: &mut [Token], answers: &Answers) {
                     {
                         am.at_least = Some(p > 0.5);
                         t.confidence = t.confidence.min(p.max(1.0 - p));
-                        t.note = Some(format!("{} p={p:.2}; {}", if p > 0.5 { "at least" } else { "at most" }, t.note.as_deref().unwrap_or("")));
+                        t.note = Some(format!(
+                            "{} p={p:.2}; {}",
+                            if p > 0.5 { "at least" } else { "at most" },
+                            t.note.as_deref().unwrap_or("")
+                        ));
                     }
                 }
                 t.amount = Some(am);
@@ -153,11 +182,19 @@ pub fn apply(tokens: &mut [Token], answers: &Answers) {
                 let lw = t.text.to_ascii_lowercase();
                 match TYPES.iter().find(|(k, _)| *k == lw) {
                     Some((_, ty)) => t.fixed = Some((*ty).to_string()),
-                    None => match answers.get(&format!("type_typo.{i}")).and_then(|a| a.choice()) {
+                    None => match answers
+                        .get(&format!("type_typo.{i}"))
+                        .and_then(|a| a.choice())
+                    {
                         Some("none") | None => t.confidence = t.confidence.min(0.3),
                         Some(k) => {
-                            t.fixed = TYPES.iter().find(|(kk, _)| *kk == k).map(|(_, ty)| (*ty).to_string());
-                            t.confidence = t.confidence.min(answers[&format!("type_typo.{i}")].certainty());
+                            t.fixed = TYPES
+                                .iter()
+                                .find(|(kk, _)| *kk == k)
+                                .map(|(_, ty)| (*ty).to_string());
+                            t.confidence = t
+                                .confidence
+                                .min(answers[&format!("type_typo.{i}")].certainty());
                         }
                     },
                 }
@@ -166,11 +203,19 @@ pub fn apply(tokens: &mut [Token], answers: &Answers) {
                 let lw = t.text.to_ascii_lowercase();
                 match ACTIONS.iter().find(|(k, _)| *k == lw) {
                     Some((_, act)) => t.fixed = Some((*act).to_string()),
-                    None => match answers.get(&format!("action_typo.{i}")).and_then(|a| a.choice()) {
+                    None => match answers
+                        .get(&format!("action_typo.{i}"))
+                        .and_then(|a| a.choice())
+                    {
                         Some("none") | None => t.confidence = t.confidence.min(0.3),
                         Some(k) => {
-                            t.fixed = ACTIONS.iter().find(|(kk, _)| *kk == k).map(|(_, act)| (*act).to_string());
-                            t.confidence = t.confidence.min(answers[&format!("action_typo.{i}")].certainty());
+                            t.fixed = ACTIONS
+                                .iter()
+                                .find(|(kk, _)| *kk == k)
+                                .map(|(_, act)| (*act).to_string());
+                            t.confidence = t
+                                .confidence
+                                .min(answers[&format!("action_typo.{i}")].certainty());
                         }
                     },
                 }

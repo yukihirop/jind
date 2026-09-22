@@ -4,32 +4,142 @@
 use crate::token::{Amount, Role, Token, Unit};
 
 pub const TYPES: &[(&str, &str)] = &[
-    ("f", "f"), ("file", "f"), ("files", "f"), ("regular", "f"),
-    ("d", "d"), ("dir", "d"), ("dirs", "d"), ("directory", "d"), ("directories", "d"), ("folder", "d"), ("folders", "d"),
-    ("l", "l"), ("symlink", "l"), ("symlinks", "l"), ("link", "l"), ("links", "l"),
+    ("f", "f"),
+    ("file", "f"),
+    ("files", "f"),
+    ("regular", "f"),
+    ("d", "d"),
+    ("dir", "d"),
+    ("dirs", "d"),
+    ("directory", "d"),
+    ("directories", "d"),
+    ("folder", "d"),
+    ("folders", "d"),
+    ("l", "l"),
+    ("symlink", "l"),
+    ("symlinks", "l"),
+    ("link", "l"),
+    ("links", "l"),
 ];
 
 /// 語 → 行為。`count` は find の外(jind が行を数える)。
 pub const ACTIONS: &[(&str, &str)] = &[
-    ("delete", "delete"), ("remove", "delete"), ("rm", "delete"), ("unlink", "delete"),
-    ("ls", "ls"), ("list", "ls"), ("long", "ls"), ("details", "ls"),
-    ("count", "count"), ("print0", "print0"),
+    ("delete", "delete"),
+    ("remove", "delete"),
+    ("rm", "delete"),
+    ("unlink", "delete"),
+    ("ls", "ls"),
+    ("list", "ls"),
+    ("long", "ls"),
+    ("details", "ls"),
+    ("count", "count"),
+    ("print0", "print0"),
 ];
 
 const QUALIFIERS: &[&str] = &[
-    "older", "newer", "than", "within", "last", "past", "recent", "recently", "modified", "changed", "edited", "touched", "since", "ago",
-    "before", "after", "larger", "bigger", "smaller", "greater", "less", "more", "over", "above", "below", "under", "at", "least", "most",
-    "min", "max", "minimum", "maximum", "exceeding", "bigger", "huge", "big", "small", "tiny", "old", "new",
+    "older",
+    "newer",
+    "than",
+    "within",
+    "last",
+    "past",
+    "recent",
+    "recently",
+    "modified",
+    "changed",
+    "edited",
+    "touched",
+    "since",
+    "ago",
+    "before",
+    "after",
+    "larger",
+    "bigger",
+    "smaller",
+    "greater",
+    "less",
+    "more",
+    "over",
+    "above",
+    "below",
+    "under",
+    "at",
+    "least",
+    "most",
+    "min",
+    "max",
+    "minimum",
+    "maximum",
+    "exceeding",
+    "bigger",
+    "huge",
+    "big",
+    "small",
+    "tiny",
+    "old",
+    "new",
 ];
 
-const EXCLUDE_MARKERS: &[&str] = &["except", "excluding", "exclude", "skip", "skipping", "ignore", "ignoring", "without", "but"];
+const EXCLUDE_MARKERS: &[&str] = &[
+    "except",
+    "excluding",
+    "exclude",
+    "skip",
+    "skipping",
+    "ignore",
+    "ignoring",
+    "without",
+    "but",
+];
 
 const DEPTH_MARKERS: &[&str] = &["depth", "maxdepth", "levels", "level", "deep"];
 
 const NOISE: &[&str] = &[
-    "find", "search", "look", "for", "in", "into", "inside", "the", "a", "an", "that", "are", "is", "with", "all", "any", "and", "of",
-    "from", "named", "called", "name", "size", "me", "show", "everything", "stuff", "things", "please", "which", "whose", "to", "here",
-    "this", "these", "those", "ending", "starting", "matching", "containing", "type", "kind", "them", "it", "then",
+    "find",
+    "search",
+    "look",
+    "for",
+    "in",
+    "into",
+    "inside",
+    "the",
+    "a",
+    "an",
+    "that",
+    "are",
+    "is",
+    "with",
+    "all",
+    "any",
+    "and",
+    "of",
+    "from",
+    "named",
+    "called",
+    "name",
+    "size",
+    "me",
+    "show",
+    "everything",
+    "stuff",
+    "things",
+    "please",
+    "which",
+    "whose",
+    "to",
+    "here",
+    "this",
+    "these",
+    "those",
+    "ending",
+    "starting",
+    "matching",
+    "containing",
+    "type",
+    "kind",
+    "them",
+    "it",
+    "then",
 ];
 
 pub fn classify(words: &[String]) -> Vec<Token> {
@@ -38,7 +148,10 @@ pub fn classify(words: &[String]) -> Vec<Token> {
         let mut t = Token::new(w.clone());
         let lw = w.to_ascii_lowercase();
         let prev_is_number = i > 0 && parse_amount(&words[i - 1]).is_some();
-        let prev_is_find_arg = out.last().map(|p: &Token| p.role == Some(Role::FindArg) && p.text.starts_with('-')).unwrap_or(false);
+        let prev_is_find_arg = out
+            .last()
+            .map(|p: &Token| p.role == Some(Role::FindArg) && p.text.starts_with('-'))
+            .unwrap_or(false);
         if w.starts_with('-') && w.len() > 1 && parse_amount(w).is_none() {
             // `-perm 644` のような find の語はそのまま通す。
             t.set_rule(Role::FindArg);
@@ -65,7 +178,11 @@ pub fn classify(words: &[String]) -> Vec<Token> {
             t.set_rule(Role::DepthMarker);
         } else if lw == "today" {
             t.set_rule(Role::TimeAmount);
-            t.amount = Some(Amount { n: 1.0, unit: Some(Unit::Days), at_least: Some(false) });
+            t.amount = Some(Amount {
+                n: 1.0,
+                unit: Some(Unit::Days),
+                at_least: Some(false),
+            });
             t.note = Some("within the last day".into());
         } else if let Some(u) = Unit::from_word(w) {
             if prev_is_number {
@@ -73,15 +190,27 @@ pub fn classify(words: &[String]) -> Vec<Token> {
                 t.fixed = Some(u.key().to_string());
             } else {
                 // `older than a week` / `within an hour`: 数の無い単位は 1。向きだけ jev に聞く(prompt が拾う)。
-                t.set_rule(if u.is_time() { Role::TimeAmount } else { Role::SizeAmount });
-                t.amount = Some(Amount { n: 1.0, unit: Some(u), at_least: None });
+                t.set_rule(if u.is_time() {
+                    Role::TimeAmount
+                } else {
+                    Role::SizeAmount
+                });
+                t.amount = Some(Amount {
+                    n: 1.0,
+                    unit: Some(u),
+                    at_least: None,
+                });
                 t.note = Some("no number, taken as 1".into());
             }
         } else if let Some(a) = parse_amount(w) {
             // 向きと単位が両方ある(`+7d`, `>10M`)ときだけ規則で決まる。`7d` や `7` は jev に向き(と単位)を聞く。
             t.amount = Some(a);
             if let (Some(u), Some(_)) = (a.unit, a.at_least) {
-                t.set_rule(if u.is_time() { Role::TimeAmount } else { Role::SizeAmount });
+                t.set_rule(if u.is_time() {
+                    Role::TimeAmount
+                } else {
+                    Role::SizeAmount
+                });
             }
         } else if QUALIFIERS.contains(&lw.as_str()) {
             t.set_rule(Role::Qualifier);
@@ -98,7 +227,13 @@ pub fn classify(words: &[String]) -> Vec<Token> {
 
 /// 見た目でパスと分かるもの。`src` のような裸の名前は is_existing_dir で見る。
 pub fn is_path_like(w: &str) -> bool {
-    w == "." || w == ".." || w == "~" || w.starts_with('/') || w.starts_with("./") || w.starts_with("../") || w.starts_with("~/")
+    w == "."
+        || w == ".."
+        || w == "~"
+        || w.starts_with('/')
+        || w.starts_with("./")
+        || w.starts_with("../")
+        || w.starts_with("~/")
 }
 
 pub fn is_glob(w: &str) -> bool {
@@ -116,7 +251,10 @@ pub fn parse_amount(w: &str) -> Option<Amount> {
         '-' | '<' => (Some(false), &w[1..]),
         _ => (None, w),
     };
-    let digits: String = rest.chars().take_while(|c| c.is_ascii_digit() || *c == '.').collect();
+    let digits: String = rest
+        .chars()
+        .take_while(|c| c.is_ascii_digit() || *c == '.')
+        .collect();
     if digits.is_empty() || !digits.chars().any(|c| c.is_ascii_digit()) {
         return None;
     }
@@ -140,29 +278,73 @@ mod tests {
     use super::*;
 
     fn roles(words: &[&str]) -> Vec<Option<Role>> {
-        classify(&words.iter().map(|s| s.to_string()).collect::<Vec<_>>()).iter().map(|t| t.role).collect()
+        classify(&words.iter().map(|s| s.to_string()).collect::<Vec<_>>())
+            .iter()
+            .map(|t| t.role)
+            .collect()
     }
 
     #[test]
     fn rules_decide_the_obvious_shapes() {
         assert_eq!(
-            roles(&["/var/log", "*.log", "files", "older", "than", "+7d", "delete"]),
-            [Some(Role::Path), Some(Role::NamePattern), Some(Role::Type), Some(Role::Qualifier), Some(Role::Qualifier), Some(Role::TimeAmount), Some(Role::Action)]
+            roles(&[
+                "/var/log", "*.log", "files", "older", "than", "+7d", "delete"
+            ]),
+            [
+                Some(Role::Path),
+                Some(Role::NamePattern),
+                Some(Role::Type),
+                Some(Role::Qualifier),
+                Some(Role::Qualifier),
+                Some(Role::TimeAmount),
+                Some(Role::Action)
+            ]
         );
     }
 
     #[test]
     fn bare_numbers_and_unsigned_amounts_go_to_jev() {
-        assert_eq!(roles(&["7", "7d", "10MB", "log", "7", "days"]), [None, None, None, None, None, Some(Role::Unit)]);
+        assert_eq!(
+            roles(&["7", "7d", "10MB", "log", "7", "days"]),
+            [None, None, None, None, None, Some(Role::Unit)]
+        );
         let t = classify(&["7d".to_string()]);
-        assert_eq!(t[0].amount, Some(Amount { n: 7.0, unit: Some(Unit::Days), at_least: None }));
+        assert_eq!(
+            t[0].amount,
+            Some(Amount {
+                n: 7.0,
+                unit: Some(Unit::Days),
+                at_least: None
+            })
+        );
     }
 
     #[test]
     fn amount_parsing() {
-        assert_eq!(parse_amount(">10M"), Some(Amount { n: 10.0, unit: Some(Unit::Mb), at_least: Some(true) }));
-        assert_eq!(parse_amount("-2h"), Some(Amount { n: 2.0, unit: Some(Unit::Hours), at_least: Some(false) }));
-        assert_eq!(parse_amount("30m"), Some(Amount { n: 30.0, unit: None, at_least: None }));
+        assert_eq!(
+            parse_amount(">10M"),
+            Some(Amount {
+                n: 10.0,
+                unit: Some(Unit::Mb),
+                at_least: Some(true)
+            })
+        );
+        assert_eq!(
+            parse_amount("-2h"),
+            Some(Amount {
+                n: 2.0,
+                unit: Some(Unit::Hours),
+                at_least: Some(false)
+            })
+        );
+        assert_eq!(
+            parse_amount("30m"),
+            Some(Amount {
+                n: 30.0,
+                unit: None,
+                at_least: None
+            })
+        );
         assert_eq!(parse_amount("abc"), None);
         assert_eq!(parse_amount("100-0001"), None);
         assert_eq!(parse_amount("2x"), None);
@@ -172,13 +354,28 @@ mod tests {
     fn unit_without_number_becomes_one_and_goes_to_jev() {
         let t = classify(&["older", "than", "a", "week"].map(String::from));
         assert_eq!(t[3].role, Some(Role::TimeAmount));
-        assert_eq!(t[3].amount, Some(Amount { n: 1.0, unit: Some(Unit::Weeks), at_least: None }));
+        assert_eq!(
+            t[3].amount,
+            Some(Amount {
+                n: 1.0,
+                unit: Some(Unit::Weeks),
+                at_least: None
+            })
+        );
         let t = classify(&["today".to_string()]);
         assert_eq!(t[0].role, Some(Role::TimeAmount));
     }
 
     #[test]
     fn find_args_pass_through() {
-        assert_eq!(roles(&["-perm", "644", "-newer", "x"]), [Some(Role::FindArg), Some(Role::FindArg), Some(Role::FindArg), None]);
+        assert_eq!(
+            roles(&["-perm", "644", "-newer", "x"]),
+            [
+                Some(Role::FindArg),
+                Some(Role::FindArg),
+                Some(Role::FindArg),
+                None
+            ]
+        );
     }
 }

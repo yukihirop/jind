@@ -22,7 +22,8 @@ jev × find。単語の並びを find コマンドにして、確認してから
 | `repair.rs` | `attach_units`(単位が jev の役割より強い)、`mark_depth`、`mark_excludes`(except の後ろ、Noise は跨ぐ) |
 | `assemble.rs` | `Search`。時間は日なら `-mtime`、時/分なら `-mmin`、週は日に。`-size` は整数なので `1.5GB` → `+1536M` |
 | `find.rs` | argv 生成(`-maxdepth` を先頭に、複数 name は `\( -o \)`、除外は `-not -path '*/X/*'` と `'*/X'`)、1 行表示、`run_inherit` / `run_capture` |
-| `main.rs` | 確認フロー。**delete は `-y` でも必ず確認、既定 No、`-delete` 抜きで先に回して最大 10 件見せる**。`count` は行数を数えて表示 |
+| `demo.rs` | `jind demo`。見本の木 `TREE` / `EMPTY_DIRS` と ↑↓ picker(raw termios、unix のみ) |
+| `main.rs` | `run`(サブコマンド振り分け)→ `execute`(本体)。確認フロー。**delete は `-y` でも必ず確認、既定 No、`-delete` 抜きで先に回して最大 10 件見せる**。`count` は行数を数えて表示 |
 | `config.rs` | `~/.config/jind/config.toml`。鍵が無ければ `~/.config/jurl/config.toml` の `[jev] api_key` を借りる |
 | `interpret.rs` | mock Oracle の統合テスト 5 件(聞いていないキーに答えると panic する Mock) |
 
@@ -40,7 +41,7 @@ jurl から `color.rs` `jev/{mod,client}.rs` `setup.rs` をほぼそのままコ
 
 - 裸の語が extension か name_word かで jev が 0.6〜0.9 に割れる(`log` 0.63〜0.71)。確認プロンプトは出る。`*.log` と書けば規則で即実行
 - `png images …` の `images` のような分類語は name_word 0.46 で拒否になる
-- `jind demo` は無い(ユーザーが `jind demo` を打った)。jurl の `demo.rs`(↑↓ picker、raw termios)を流用し、一時ディレクトリに見本ファイルを作ってそこで回す案を提示済み。**未承認**
+- `jind demo [N]`(`demo.rs`、2026-09-22): jurl の picker を流用。`$TMPDIR/jind-demo` に見本の木(mtime を日数で戻す、sparse で 6MB/12MB)を毎回作り直して chdir。例 10 本は実機で通した。`rs` 単独や `tmp`(空ディレクトリ `tmp/` を作ると規則で path になる)、typo `flies` は jev が割れて demo に載せられなかった
 - 時間は mtime のみ。`yesterday`(ちょうど 1 日)や `-newer file` は無い
 - README は jurl と同じ構成(`docs/hero.svg` `flow.svg` `demo.svg`)。demo は `docs/demo-capture.json`(pty で取った実出力)→ `docs/make-demo.py`。例は `-n` で実出力と一致することを確認済み(2026-09-22)
 - Windows は未検証(jurl と同様)

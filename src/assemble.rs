@@ -32,7 +32,11 @@ pub struct Search {
 }
 
 pub fn assemble(tokens: &[Token]) -> Result<Search, JindError> {
-    let unresolved: Vec<&str> = tokens.iter().filter(|t| !t.resolved()).map(|t| t.text.as_str()).collect();
+    let unresolved: Vec<&str> = tokens
+        .iter()
+        .filter(|t| !t.resolved())
+        .map(|t| t.text.as_str())
+        .collect();
     if !unresolved.is_empty() {
         return Err(JindError::Unresolved(unresolved.join(", ")));
     }
@@ -57,7 +61,9 @@ pub fn assemble(tokens: &[Token]) -> Result<Search, JindError> {
         match t.role.unwrap() {
             Role::Path => s.paths.push(expand_home(&t.text)),
             Role::NamePattern => s.names.push((t.text.clone(), false)),
-            Role::Extension => s.names.push((format!("*.{}", t.text.trim_start_matches('.')), true)),
+            Role::Extension => s
+                .names
+                .push((format!("*.{}", t.text.trim_start_matches('.')), true)),
             Role::NameWord => s.names.push((format!("*{}*", t.text), true)),
             Role::Type => {
                 let ty = t.value().to_string();
@@ -97,7 +103,11 @@ pub fn assemble(tokens: &[Token]) -> Result<Search, JindError> {
                 s.action = a;
             }
             Role::FindArg => s.extra.push(t.text.clone()),
-            Role::Unit | Role::Qualifier | Role::ExcludeMarker | Role::DepthMarker | Role::Noise => {}
+            Role::Unit
+            | Role::Qualifier
+            | Role::ExcludeMarker
+            | Role::DepthMarker
+            | Role::Noise => {}
         }
     }
     if !conflicts.is_empty() {
@@ -111,9 +121,10 @@ pub fn assemble(tokens: &[Token]) -> Result<Search, JindError> {
 
 fn expand_home(p: &str) -> String {
     if (p == "~" || p.starts_with("~/"))
-        && let Some(h) = std::env::var_os("HOME") {
-            return format!("{}{}", h.to_string_lossy(), &p[1..]);
-        }
+        && let Some(h) = std::env::var_os("HOME")
+    {
+        return format!("{}{}", h.to_string_lossy(), &p[1..]);
+    }
     p.to_string()
 }
 
@@ -187,7 +198,16 @@ mod tests {
                 t.fixed = Some("f".into());
                 t
             },
-            amount("7", Role::TimeAmount, Amount { n: 7.0, unit: Some(Unit::Days), at_least: Some(true) }, 0.9),
+            amount(
+                "7",
+                Role::TimeAmount,
+                Amount {
+                    n: 7.0,
+                    unit: Some(Unit::Days),
+                    at_least: Some(true),
+                },
+                0.9,
+            ),
             {
                 let mut t = tok("delete", Role::Action);
                 t.fixed = Some("delete".into());
@@ -203,9 +223,30 @@ mod tests {
 
     #[test]
     fn hours_become_mmin_and_fractional_gb_become_mb() {
-        assert_eq!(time_arg(Amount { n: 2.0, unit: Some(Unit::Hours), at_least: Some(false) }), (true, "-120".into()));
-        assert_eq!(size_arg(Amount { n: 1.5, unit: Some(Unit::Gb), at_least: Some(true) }), "+1536M");
-        assert_eq!(size_arg(Amount { n: 100.0, unit: Some(Unit::Kb), at_least: Some(false) }), "-100k");
+        assert_eq!(
+            time_arg(Amount {
+                n: 2.0,
+                unit: Some(Unit::Hours),
+                at_least: Some(false)
+            }),
+            (true, "-120".into())
+        );
+        assert_eq!(
+            size_arg(Amount {
+                n: 1.5,
+                unit: Some(Unit::Gb),
+                at_least: Some(true)
+            }),
+            "+1536M"
+        );
+        assert_eq!(
+            size_arg(Amount {
+                n: 100.0,
+                unit: Some(Unit::Kb),
+                at_least: Some(false)
+            }),
+            "-100k"
+        );
     }
 
     #[test]

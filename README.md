@@ -53,6 +53,7 @@ One jev call is 200–700 ms and under $0.0001.
 ```sh
 cargo install jind
 jind setup        # store your OpenRouter API key in ~/.config/jind/config.toml (0600)
+jind demo         # 10 examples on a sample tree in a temp dir, pick with ↑↓ (delete is safe there)
 ```
 
 `OPENROUTER_API_KEY` in the environment takes precedence; a key saved by `jurl setup` is picked up too. `find` must be on `PATH` (BSD and GNU both work). Tested on macOS; Linux should behave the same. Windows is untested.

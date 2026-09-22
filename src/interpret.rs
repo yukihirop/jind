@@ -13,7 +13,12 @@ pub fn interpret(tokens: &mut [Token], oracle: &dyn Oracle) -> Result<JevInfo, J
     let n = built.questions.len();
     let t0 = Instant::now();
     let res = oracle.decide(built.state, built.questions)?;
-    let info = JevInfo { model: res.model.clone(), questions: n, ms: t0.elapsed().as_millis(), usage: res.usage.clone() };
+    let info = JevInfo {
+        model: res.model.clone(),
+        questions: n,
+        ms: t0.elapsed().as_millis(),
+        usage: res.usage.clone(),
+    };
     jev::prompt::apply(tokens, &res.answers);
     repair::repair(tokens);
     Ok(info)
@@ -24,11 +29,11 @@ mod tests {
     //! Oracle をモックにした jev パスの統合テスト。答えはワイヤ形式のまま JSON で書く。
 
     use super::*;
-    use crate::assemble::{assemble, Action};
+    use crate::assemble::{Action, assemble};
     use crate::find;
     use crate::jev::{Answers, DecisionsResponse, Questions};
     use crate::rules::classify;
-    use serde_json::{json, Value};
+    use serde_json::{Value, json};
     use std::cell::RefCell;
 
     /// 質問に無いキーへ答えたら panic する(フィクスチャが実際の質問設計とずれたら気づくため)。
@@ -39,18 +44,34 @@ mod tests {
 
     impl Mock {
         fn new(answers: Value) -> Self {
-            Mock { answers, seen: RefCell::new(None) }
+            Mock {
+                answers,
+                seen: RefCell::new(None),
+            }
         }
     }
 
     impl Oracle for Mock {
-        fn decide(&self, _state: Value, questions: Questions) -> Result<DecisionsResponse, JindError> {
+        fn decide(
+            &self,
+            _state: Value,
+            questions: Questions,
+        ) -> Result<DecisionsResponse, JindError> {
             for k in self.answers.as_object().unwrap().keys() {
-                assert!(questions.contains_key(k), "mock answers `{k}` but jind did not ask it; asked: {:?}", questions.keys().collect::<Vec<_>>());
+                assert!(
+                    questions.contains_key(k),
+                    "mock answers `{k}` but jind did not ask it; asked: {:?}",
+                    questions.keys().collect::<Vec<_>>()
+                );
             }
             *self.seen.borrow_mut() = Some(questions);
-            let answers: Answers = serde_json::from_value(self.answers.clone()).expect("answer fixture must be wire-shaped");
-            Ok(DecisionsResponse { model: "typesafe/jev-1.13-test".into(), answers, usage: None })
+            let answers: Answers = serde_json::from_value(self.answers.clone())
+                .expect("answer fixture must be wire-shaped");
+            Ok(DecisionsResponse {
+                model: "typesafe/jev-1.13-test".into(),
+                answers,
+                usage: None,
+            })
         }
     }
 
@@ -97,7 +118,10 @@ mod tests {
         }));
         interpret(&mut tokens, &mock).unwrap();
         let s = assemble(&tokens).unwrap();
-        assert_eq!(find::render_with(&find::argv(&s, true), false), "find . -type f -mmin -120");
+        assert_eq!(
+            find::render_with(&find::argv(&s, true), false),
+            "find . -type f -mmin -120"
+        );
     }
 
     #[test]
@@ -130,7 +154,10 @@ mod tests {
         }));
         interpret(&mut tokens, &mock).unwrap();
         let s = assemble(&tokens).unwrap();
-        assert_eq!(find::render_with(&find::argv(&s, true), false), "find . -maxdepth 2 -type d -empty");
+        assert_eq!(
+            find::render_with(&find::argv(&s, true), false),
+            "find . -maxdepth 2 -type d -empty"
+        );
         assert_eq!(s.action, Action::Count);
     }
 

@@ -12,6 +12,7 @@ usage: jind [words ...] [flags] [-- find args]
 
 commands:
   setup           save your OpenRouter API key to ~/.config/jind/config.toml (0600)
+  demo [N]        build a sample tree in a temp dir and try the examples there (pick with ↑↓ or N)
 
 flags:
   -n, --dry-run   print the find command instead of running it
@@ -66,8 +67,15 @@ pub fn parse(args: impl IntoIterator<Item = String>) -> Parsed {
             _ => words.push(a),
         }
     }
-    if std::env::var("JIND_NO_JEV").map(|v| v == "1").unwrap_or(false) {
+    if std::env::var("JIND_NO_JEV")
+        .map(|v| v == "1")
+        .unwrap_or(false)
+    {
         opts.no_jev = true;
     }
-    Parsed { opts, words, passthrough }
+    Parsed {
+        opts,
+        words,
+        passthrough,
+    }
 }

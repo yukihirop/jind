@@ -10,7 +10,9 @@ pub enum JindError {
     Conflict(String),
     #[error("jev: {0}")]
     Jev(String),
-    #[error("interpretation rejected (confidence {0:.2} < {1:.2}); rerun with --explain to see why")]
+    #[error(
+        "interpretation rejected (confidence {0:.2} < {1:.2}); rerun with --explain to see why"
+    )]
     LowConfidence(f32, f32),
     #[error("aborted")]
     Aborted,
