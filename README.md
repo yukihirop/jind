@@ -3,6 +3,12 @@
 </p>
 
 <p align="center">
+  <a href="https://crates.io/crates/jind"><img src="https://img.shields.io/crates/v/jind.svg" alt="crates.io"></a>
+  <a href="https://crates.io/crates/jind"><img src="https://img.shields.io/crates/d/jind.svg" alt="downloads"></a>
+  <a href="LICENSE"><img src="https://img.shields.io/badge/license-MIT-blue.svg" alt="MIT"></a>
+</p>
+
+<p align="center">
   <b>jind</b> turns a loose pile of words — out of order, half-remembered, misspelled — into the <code>find</code> command you meant, shows it, and runs it.
 </p>
 
