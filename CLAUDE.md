@@ -4,11 +4,9 @@ jev × find。単語の並びを find コマンドにして、確認してから
 
 ## いまの状態
 
-- GitHub `yukihirop/jind`(public)を 2026-09-22 に作成、`main` を push 済み。**crates.io は未 publish**
-  - publish は README を確認してから、とユーザーが言っている。**publish 前に必ず確認を取る**
+- GitHub `yukihirop/jind`(public)、crates.io `jind` 0.1.0 を 2026-09-22 に publish 済み(tag `v0.1.0`)。次の publish も必ず事前に確認を取る
 - `cargo install --path .` 済み(`~/.cargo/bin/jind` 0.1.0)
 - テスト 17 件 pass、clippy 0 件、edition 2024、rustc 1.98
-- crates.io の名前 `jind` は空いていた(2026-09-22 に API で 404 を確認)
 
 ## 構成(`src/`)
 
