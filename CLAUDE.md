@@ -4,8 +4,7 @@ jev × find。単語の並びを find コマンドにして、確認してから
 
 ## いまの状態
 
-- ローカル commit 2 つ(`a977baf`, `c8191da`)。**GitHub リポジトリは未作成、crates.io 未 publish**
-  - `gh repo create yukihirop/jind --public --source=. --push` は Claude 側の許可で止まった。ユーザーが手で打つ
+- GitHub `yukihirop/jind`(public)を 2026-09-22 に作成、`main` を push 済み。**crates.io は未 publish**
   - publish は README を確認してから、とユーザーが言っている。**publish 前に必ず確認を取る**
 - `cargo install --path .` 済み(`~/.cargo/bin/jind` 0.1.0)
 - テスト 17 件 pass、clippy 0 件、edition 2024、rustc 1.98
@@ -49,7 +48,7 @@ jurl から `color.rs` `jev/{mod,client}.rs` `setup.rs` をほぼそのままコ
 ## 作業ルール(ユーザーから)
 
 - 日本語で答える。事実と推測を分ける
-- 小さな修正は commit → push まで確認なしでよい(jurl で 2026-09-22 に了承。jind も同じ扱いでよいと思われるが、jind ではまだ push 自体が無い)
+- 小さな修正は commit → push まで確認なしでよい(jurl で 2026-09-22 に了承。jind も同じ扱い)
 - 公開・publish・削除は必ず事前に確認
 - jev の API / モデル ID の一次資料は `~/JavaScriptProjects/eg-jev`(`packages/recipes/src/lib/{openrouter,questions}.ts`)
 - commit 末尾に `Co-Authored-By: Claude Opus 5 <noreply@anthropic.com>`
